@@ -101,6 +101,7 @@ a { color: var(--primary); }
 .btn:hover:not(:disabled) { filter: none; }
 .btn:active:not(:disabled), .btn.active { filter: none; }
 .form-control, .form-select { background-color: var(--body-bg) !important; border-color: var(--border-color) !important; color: var(--body-color); }
+.form-select option, .form-select optgroup { background-color: var(--secondary-bg); color: var(--body-color); }
 .form-control:focus, .form-select:focus, .form-check-input:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent) !important; }
 .form-check-input { border-color: var(--border-color) !important; accent-color: var(--primary); }
 .card { background: var(--secondary-bg); border-color: var(--border-color); }
