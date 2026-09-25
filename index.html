@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADB2</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=09540df4" />
+  <!-- App CSS -->
+  <link href="base.css?v=09540df4" rel="stylesheet" />
+  <link href="app.css?v=09540df4" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Material Symbols sprite: start -->
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
+  <symbol id="add" viewBox="0 -960 960 960">
+    <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+  </symbol>
+  <symbol id="add_circle" viewBox="0 -960 960 960">
+    <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+  </symbol>
+  <symbol id="arrow_drop_down" viewBox="0 -960 960 960">
+    <path d="M480-360 280-560h400L480-360Z" />
+  </symbol>
+  <symbol id="arrow_drop_up" viewBox="0 -960 960 960">
+    <path d="m280-400 200-200 200 200H280Z" />
+  </symbol>
+  <symbol id="artist" viewBox="0 -960 960 960">
+    <path d="M740-560h140v80h-80v220q0 42-29 71t-71 29q-42 0-71-29t-29-71q0-42 29-71t71-29q8 0 18 1.5t22 6.5v-208ZM120-160v-112q0-35 17.5-63t46.5-43q62-31 126-46.5T440-440q42 0 83.5 6.5T607-414q-20 12-36 29t-28 37q-26-6-51.5-9t-51.5-3q-57 0-112 14t-108 40q-9 5-14.5 14t-5.5 20v32h321q2 20 9.5 40t20.5 40H120Zm207-367q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm169.5-56.5Q520-607 520-640t-23.5-56.5Q473-720 440-720t-56.5 23.5Q360-673 360-640t23.5 56.5Q407-560 440-560t56.5-23.5ZM440-640Zm0 400Z" />
+  </symbol>
+  <symbol id="auto_fix_high" viewBox="0 -960 960 960">
+    <path d="m800-680-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm-460 0-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82Zm460 460-38-82-82-38 82-38 38-82 38 82 82 38-82 38-38 82ZM204-92 92-204q-12-12-12-29t12-29l446-446q12-12 29-12t29 12l112 112q12 12 12 29t-12 29L262-92q-12 12-29 12t-29-12Zm30-84 286-288-56-56-288 286 58 58Z" />
+  </symbol>
+  <symbol id="bar_chart" viewBox="0 -960 960 960">
+    <path d="M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z" />
+  </symbol>
+  <symbol id="build" viewBox="0 -960 960 960">
+    <path d="M686-132 444-376q-20 8-40.5 12t-43.5 4q-100 0-170-70t-70-170q0-36 10-68.5t28-61.5l146 146 72-72-146-146q29-18 61.5-28t68.5-10q100 0 170 70t70 170q0 23-4 43.5T584-516l244 242q12 12 12 29t-12 29l-84 84q-12 12-29 12t-29-12Zm29-85 27-27-256-256q18-20 26-46.5t8-53.5q0-60-38.5-104.5T386-758l74 74q12 12 12 28t-12 28L332-500q-12 12-28 12t-28-12l-74-74q9 57 53.5 95.5T360-440q26 0 52-8t47-25l256 256ZM472-488Z" />
+  </symbol>
+  <symbol id="calendar_month" viewBox="0 -960 960 960">
+    <path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-188.5-11.5Q280-423 280-440t11.5-28.5Q303-480 320-480t28.5 11.5Q360-457 360-440t-11.5 28.5Q337-400 320-400t-28.5-11.5ZM640-400q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-188.5-11.5Q280-263 280-280t11.5-28.5Q303-320 320-320t28.5 11.5Q360-297 360-280t-11.5 28.5Q337-240 320-240t-28.5-11.5ZM640-240q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z" />
+  </symbol>
+  <symbol id="cell_tower" viewBox="0 -960 960 960">
+    <path d="M196-276q-57-60-86.5-133T80-560q0-78 29.5-151T196-844l48 48q-48 48-72 110.5T148-560q0 63 24 125.5T244-324l-48 48Zm96-96q-39-39-59.5-88T212-560q0-51 20.5-100t59.5-88l48 48q-30 27-45 64t-15 76q0 36 15 73t45 67l-48 48ZM280-80l135-405q-16-14-25.5-33t-9.5-42q0-42 29-71t71-29q42 0 71 29t29 71q0 23-9.5 42T545-485L680-80h-80l-26-80H387l-27 80h-80Zm133-160h134l-67-200-67 200Zm255-132-48-48q30-27 45-64t15-76q0-36-15-73t-45-67l48-48q39 39 58 88t22 100q0 51-20.5 100T668-372Zm96 96-48-48q48-48 72-110.5T812-560q0-63-24-125.5T716-796l48-48q57 60 86.5 133T880-560q0 78-28 151t-88 133Z" />
+  </symbol>
+  <symbol id="checklist" viewBox="0 -960 960 960">
+    <path d="M222-200 80-342l56-56 85 85 170-170 56 57-225 226Zm0-320L80-662l56-56 85 85 170-170 56 57-225 226Zm298 240v-80h360v80H520Zm0-320v-80h360v80H520Z" />
+  </symbol>
+  <symbol id="database" viewBox="0 -960 960 960">
+    <path d="M480-120q-151 0-255.5-46.5T120-280v-400q0-66 105.5-113T480-840q149 0 254.5 47T840-680v400q0 67-104.5 113.5T480-120Zm0-479q89 0 179-25.5T760-679q-11-29-100.5-55T480-760q-91 0-178.5 25.5T200-679q14 30 101.5 55T480-599Zm0 199q42 0 81-4t74.5-11.5q35.5-7.5 67-18.5t57.5-25v-120q-26 14-57.5 25t-67 18.5Q600-528 561-524t-81 4q-42 0-82-4t-75.5-11.5Q287-543 256-554t-56-25v120q25 14 56 25t66.5 18.5Q358-408 398-404t82 4Zm0 200q46 0 93.5-7t87.5-18.5q40-11.5 67-26t32-29.5v-98q-26 14-57.5 25t-67 18.5Q600-328 561-324t-81 4q-42 0-82-4t-75.5-11.5Q287-343 256-354t-56-25v99q5 15 31.5 29t66.5 25.5q40 11.5 88 18.5t94 7Z" />
+  </symbol>
+  <symbol id="delete" viewBox="0 -960 960 960">
+    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+  </symbol>
+  <symbol id="description" viewBox="0 -960 960 960">
+    <path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+  </symbol>
+  <symbol id="dns" viewBox="0 -960 960 960">
+    <path d="M300-720q-25 0-42.5 17.5T240-660q0 25 17.5 42.5T300-600q25 0 42.5-17.5T360-660q0-25-17.5-42.5T300-720Zm0 400q-25 0-42.5 17.5T240-260q0 25 17.5 42.5T300-200q25 0 42.5-17.5T360-260q0-25-17.5-42.5T300-320ZM160-840h640q17 0 28.5 11.5T840-800v280q0 17-11.5 28.5T800-480H160q-17 0-28.5-11.5T120-520v-280q0-17 11.5-28.5T160-840Zm40 80v200h560v-200H200Zm-40 320h640q17 0 28.5 11.5T840-400v280q0 17-11.5 28.5T800-80H160q-17 0-28.5-11.5T120-120v-280q0-17 11.5-28.5T160-440Zm40 80v200h560v-200H200Zm0-400v200-200Zm0 400v200-200Z" />
+  </symbol>
+  <symbol id="download" viewBox="0 -960 960 960">
+    <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
+  </symbol>
+  <symbol id="drag_indicator" viewBox="0 -960 960 960">
+    <path d="M360-160q-33 0-56.5-23.5T280-240q0-33 23.5-56.5T360-320q33 0 56.5 23.5T440-240q0 33-23.5 56.5T360-160Zm240 0q-33 0-56.5-23.5T520-240q0-33 23.5-56.5T600-320q33 0 56.5 23.5T680-240q0 33-23.5 56.5T600-160ZM360-400q-33 0-56.5-23.5T280-480q0-33 23.5-56.5T360-560q33 0 56.5 23.5T440-480q0 33-23.5 56.5T360-400Zm240 0q-33 0-56.5-23.5T520-480q0-33 23.5-56.5T600-560q33 0 56.5 23.5T680-480q0 33-23.5 56.5T600-400ZM360-640q-33 0-56.5-23.5T280-720q0-33 23.5-56.5T360-800q33 0 56.5 23.5T440-720q0 33-23.5 56.5T360-640Zm240 0q-33 0-56.5-23.5T520-720q0-33 23.5-56.5T600-800q33 0 56.5 23.5T680-720q0 33-23.5 56.5T600-640Z" />
+  </symbol>
+  <symbol id="edit_square" viewBox="0 -960 960 960">
+    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z" />
+  </symbol>
+  <symbol id="favorite" viewBox="0 -960 960 960">
+    <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
+  </symbol>
+  <symbol id="file_download" viewBox="0 -960 960 960">
+    <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
+  </symbol>
+  <symbol id="filter_alt" viewBox="0 -960 960 960">
+    <path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
+  </symbol>
+  <symbol id="folder_open" viewBox="0 -960 960 960">
+    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z" />
+  </symbol>
+  <symbol id="format_list_numbered" viewBox="0 -960 960 960">
+    <path d="M120-80v-60h100v-30h-60v-60h60v-30H120v-60h120q17 0 28.5 11.5T280-280v40q0 17-11.5 28.5T240-200q17 0 28.5 11.5T280-160v40q0 17-11.5 28.5T240-80H120Zm0-280v-110q0-17 11.5-28.5T160-510h60v-30H120v-60h120q17 0 28.5 11.5T280-560v70q0 17-11.5 28.5T240-450h-60v30h100v60H120Zm60-280v-180h-60v-60h120v240h-60Zm180 440v-80h480v80H360Zm0-240v-80h480v80H360Zm0-240v-80h480v80H360Z" />
+  </symbol>
+  <symbol id="group" viewBox="0 -960 960 960">
+    <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm466 0q-47 47-113 47-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113q0 66-47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm296.5-343.5Q440-607 440-640t-23.5-56.5Q393-720 360-720t-56.5 23.5Q280-673 280-640t23.5 56.5Q327-560 360-560t56.5-23.5ZM360-240Zm0-400Z" />
+  </symbol>
+  <symbol id="info" viewBox="0 -960 960 960">
+    <path d="M440-280h80v-240h-80v240Zm68.5-331.5Q520-623 520-640t-11.5-28.5Q497-680 480-680t-28.5 11.5Q440-657 440-640t11.5 28.5Q463-600 480-600t28.5-11.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+  </symbol>
+  <symbol id="language" viewBox="0 -960 960 960">
+    <path d="M325-111.5q-73-31.5-127.5-86t-86-127.5Q80-398 80-480.5t31.5-155q31.5-72.5 86-127t127.5-86Q398-880 480.5-880t155 31.5q72.5 31.5 127 86t86 127Q880-563 880-480.5T848.5-325q-31.5 73-86 127.5t-127 86Q563-80 480.5-80T325-111.5ZM480-162q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z" />
+  </symbol>
+  <symbol id="link" viewBox="0 -960 960 960">
+    <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z" />
+  </symbol>
+  <symbol id="menu_book" viewBox="0 -960 960 960">
+    <path d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z" />
+  </symbol>
+  <symbol id="mic" viewBox="0 -960 960 960">
+    <path d="M395-435q-35-35-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35q-50 0-85-35Zm85-205Zm-40 520v-123q-104-14-172-93t-68-184h80q0 83 58.5 141.5T480-320q83 0 141.5-58.5T680-520h80q0 105-68 184t-172 93v123h-80Zm68.5-371.5Q520-503 520-520v-240q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v240q0 17 11.5 28.5T480-480q17 0 28.5-11.5Z" />
+  </symbol>
+  <symbol id="movie" viewBox="0 -960 960 960">
+    <path d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z" />
+  </symbol>
+  <symbol id="music_note" viewBox="0 -960 960 960">
+    <path d="M287-167q-47-47-47-113t47-113q47-47 113-47 23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47q-66 0-113-47Z" />
+  </symbol>
+  <symbol id="open_in_new" viewBox="0 -960 960 960">
+    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
+  </symbol>
+  <symbol id="pause" viewBox="0 -960 960 960">
+    <path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z" />
+  </symbol>
+  <symbol id="person" viewBox="0 -960 960 960">
+    <path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm296.5-343.5Q560-607 560-640t-23.5-56.5Q513-720 480-720t-56.5 23.5Q400-673 400-640t23.5 56.5Q447-560 480-560t56.5-23.5ZM480-640Zm0 400Z" />
+  </symbol>
+  <symbol id="play_arrow" viewBox="0 -960 960 960">
+    <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
+  </symbol>
+  <symbol id="playlist_play" viewBox="0 -960 960 960">
+    <path d="M120-320v-80h320v80H120Zm0-160v-80h480v80H120Zm0-160v-80h480v80H120Zm520 520v-320l240 160-240 160Z" />
+  </symbol>
+  <symbol id="queue_music" viewBox="0 -960 960 960">
+    <path d="M640-160q-50 0-85-35t-35-85q0-50 35-85t85-35q11 0 21 1.5t19 6.5v-328h200v80H760v360q0 50-35 85t-85 35ZM120-320v-80h320v80H120Zm0-160v-80h480v80H120Zm0-160v-80h480v80H120Z" />
+  </symbol>
+  <symbol id="refresh" viewBox="0 -960 960 960">
+    <path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+  </symbol>
+  <symbol id="repeat" viewBox="0 -960 960 960">
+    <path d="M280-80 120-240l160-160 56 58-62 62h406v-160h80v240H274l62 62-56 58Zm-80-440v-240h486l-62-62 56-58 160 160-160 160-56-58 62-62H280v160h-80Z" />
+  </symbol>
+  <symbol id="restart_alt" viewBox="0 -960 960 960">
+    <path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z" />
+  </symbol>
+  <symbol id="save" viewBox="0 -960 960 960">
+    <path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM565-275q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z" />
+  </symbol>
+  <symbol id="search" viewBox="0 -960 960 960">
+    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+  </symbol>
+  <symbol id="search_gear" viewBox="0 -960 960 960">
+    <path d="M824-120 568-376q-12-13-25.5-26.5T516-428q38-24 61-64t23-88q0-75-52.5-127.5T420-760q-75 0-127.5 52.5T240-580q0 6 .5 11.5T242-557q-18 2-39.5 8T164-535q-2-11-3-22t-1-23q0-109 75.5-184.5T420-840q109 0 184.5 75.5T680-580q0 43-13.5 81.5T629-428l251 252-56 56ZM240-80l-12-60q-12-5-22.5-10.5T184-164l-58 18-40-68 46-40q-2-13-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T228-420l12-60h80l12 60q12 5 22.5 10.5T376-396l58-18 40 68-46 40q2 13 2 26t-2 26l46 40-40 68-58-18q-11 8-21.5 13.5T332-140l-12 60h-80Zm96.5-143.5Q360-247 360-280t-23.5-56.5Q313-360 280-360t-56.5 23.5Q200-313 200-280t23.5 56.5Q247-200 280-200t56.5-23.5Z" />
+  </symbol>
+  <symbol id="sell" viewBox="0 -960 960 960">
+    <path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z" />
+  </symbol>
+  <symbol id="settings" viewBox="0 -960 960 960">
+    <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
+  </symbol>
+  <symbol id="shuffle" viewBox="0 -960 960 960">
+    <path d="M560-160v-80h104L537-367l57-57 126 126v-102h80v240H560Zm-344 0-56-56 504-504H560v-80h240v240h-80v-104L216-160Zm151-377L160-744l56-56 207 207-56 56Z" />
+  </symbol>
+  <symbol id="signal_cellular_alt" viewBox="0 -960 960 960">
+    <path d="M200-160v-240h120v240H200Zm240 0v-440h120v440H440Zm240 0v-640h120v640H680Z" />
+  </symbol>
+  <symbol id="skip_next" viewBox="0 -960 960 960">
+    <path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z" />
+  </symbol>
+  <symbol id="skip_previous" viewBox="0 -960 960 960">
+    <path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Zm-80-240Zm0 90v-180l-136 90 136 90Z" />
+  </symbol>
+  <symbol id="sports_esports" viewBox="0 -960 960 960">
+    <path d="M182-200q-51 0-79-35.5T82-322l42-300q9-60 53.5-99T282-760h396q60 0 104.5 39t53.5 99l42 300q7 51-21 86.5T778-200q-21 0-39-7.5T706-230l-90-90H344l-90 90q-15 15-33 22.5t-39 7.5Zm16-86 114-114h336l114 114q2 2 16 6 11 0 17.5-6.5T800-304l-44-308q-4-29-26-48.5T678-680H282q-30 0-52 19.5T204-612l-44 308q-2 11 4.5 17.5T182-280q2 0 16-6Zm510.5-165.5Q720-463 720-480t-11.5-28.5Q697-520 680-520t-28.5 11.5Q640-497 640-480t11.5 28.5Q663-440 680-440t28.5-11.5Zm-80-120Q640-583 640-600t-11.5-28.5Q617-640 600-640t-28.5 11.5Q560-617 560-600t11.5 28.5Q583-560 600-560t28.5-11.5ZM310-440h60v-70h70v-60h-70v-70h-60v70h-70v60h70v70Zm170-40Z" />
+  </symbol>
+  <symbol id="stop" viewBox="0 -960 960 960">
+    <path d="M320-640v320-320Zm-80 400v-480h480v480H240Zm80-80h320v-320H320v320Z" />
+  </symbol>
+  <symbol id="swap_horiz" viewBox="0 -960 960 960">
+    <path d="M280-160 80-360l200-200 56 57-103 103h287v80H233l103 103-56 57Zm400-240-56-57 103-103H440v-80h287L624-743l56-57 200 200-200 200Z" />
+  </symbol>
+  <symbol id="swap_vert" viewBox="0 -960 960 960">
+    <path d="M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z" />
+  </symbol>
+  <symbol id="table_chart" viewBox="0 -960 960 960">
+    <path d="M760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120ZM200-640h560v-120H200v120Zm100 80H200v360h100v-360Zm360 0v360h100v-360H660Zm-80 0H380v360h200v-360Z" />
+  </symbol>
+  <symbol id="timer" viewBox="0 -960 960 960">
+    <path d="M360-840v-80h240v80H360Zm80 440h80v-240h-80v240Zm-99.5 291.5Q275-137 226-186t-77.5-114.5Q120-366 120-440t28.5-139.5Q177-645 226-694t114.5-77.5Q406-800 480-800q62 0 119 20t107 58l56-56 56 56-56 56q38 50 58 107t20 119q0 74-28.5 139.5T734-186q-49 49-114.5 77.5T480-80q-74 0-139.5-28.5ZM678-242q82-82 82-198t-82-198q-82-82-198-82t-198 82q-82 82-82 198t82 198q82 82 198 82t198-82ZM480-440Z" />
+  </symbol>
+  <symbol id="trending_up" viewBox="0 -960 960 960">
+    <path d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z" />
+  </symbol>
+  <symbol id="tune" viewBox="0 -960 960 960">
+    <path d="M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80h160v80H680v80h-80Zm-480-80v-80h400v80H120Z" />
+  </symbol>
+  <symbol id="tv" viewBox="0 -960 960 960">
+    <path d="M320-120v-80H160q-33 0-56.5-23.5T80-280v-480q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v480q0 33-23.5 56.5T800-200H640v80H320ZM160-280h640v-480H160v480Zm0 0v-480 480Z" />
+  </symbol>
+  <symbol id="upload_file" viewBox="0 -960 960 960">
+    <path d="M440-200h80v-167l64 64 56-57-160-160-160 160 57 56 63-63v167ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+  </symbol>
+  <symbol id="visibility" viewBox="0 -960 960 960">
+    <path d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z" />
+  </symbol>
+  <symbol id="visibility_off" viewBox="0 -960 960 960">
+    <path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+  </symbol>
+  <symbol id="volume_off" viewBox="0 -960 960 960">
+    <path d="M792-56 671-177q-25 16-53 27.5T560-131v-82q14-5 27.5-10t25.5-12L480-368v208L280-360H120v-240h128L56-792l56-56 736 736-56 56Zm-8-232-58-58q17-31 25.5-65t8.5-70q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 53-14.5 102T784-288ZM650-422l-90-90v-130q47 22 73.5 66t26.5 96q0 15-2.5 29.5T650-422ZM480-592 376-696l104-104v208Zm-80 238v-94l-72-72H200v80h114l86 86Zm-36-130Z" />
+  </symbol>
+  <symbol id="volume_up" viewBox="0 -960 960 960">
+    <path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z" />
+  </symbol>
+</svg>
+  <!-- Material Symbols sprite: end -->
+  <nav class="app-header sticky-top" aria-label="Main navigation">
+    <div class="app-header-inner">
+      <a class="app-brand" href="#" aria-label="ADB2 home"><span class="app-brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>ADB2</a>
+      <span class="app-brand-divider" aria-hidden="true"></span>
+      <span class="app-brand-name">Anisong lookup</span>
+      <div class="app-header-actions">
+        <button id="header-playlists-button" class="btn btn-outline-secondary" data-ui-toggle="modal" data-ui-target="#playlists-modal" aria-label="Playlists" title="Playlists"><svg class="icon" aria-hidden="true"><use href="#playlist_play"></use></svg><span>Playlists</span></button>
+        <button id="header-settings-button" class="btn btn-outline-secondary" data-ui-toggle="modal" data-ui-target="#settings-modal" aria-label="Settings" title="Settings"><svg class="icon" aria-hidden="true"><use href="#settings"></use></svg><span>Settings</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search, alerts, tools, and results share one page column. -->
+  <div class="page-content">
+    <div class="search-workspace" aria-label="Song search">
+      <div class="search-top">
+        <div class="search-inputs">
+          <!-- Simple Search Mode -->
+          <div id="search-simple-fields" class="search-mode-fields">
+            <select id="search-scope-select" class="form-select form-select-sm w-auto">
+              <option value="All" selected>All</option>
+              <option value="Anime">Anime</option>
+              <option value="Artist">Artist</option>
+              <option value="Song">Song</option>
+              <option value="Composer">Composer</option>
+              <option value="Season">Season</option>
+              <option value="ANN">ANN ID</option>
+              <option value="MAL">MAL ID</option>
+              <option value="ANN_SONG">ANN Song ID</option>
+              <option value="AMQ_SONG">AMQ Song ID</option>
+              <option value="ARTIST_ID">Artist ID</option>
+              <option value="COMPOSER_ID">Composer ID</option>
+              <option value="RANDOM">Random # Songs</option>
+            </select>
+            <input id="search-query-input" type="text" class="form-control form-control-sm flex-grow-1"
+              placeholder="Search anime, artist, song, composer" />
+          </div>
+
+          <!-- Multi-field Search Mode -->
+          <div id="search-advanced-fields" class="search-mode-fields d-none">
+            <input id="search-anime-input" type="text" class="form-control form-control-sm" placeholder="Anime title" />
+            <input id="search-artist-input" type="text" class="form-control form-control-sm" placeholder="Artist name" />
+            <input id="search-song-input" type="text" class="form-control form-control-sm" placeholder="Song name" />
+            <input id="search-composer-input" type="text" class="form-control form-control-sm" placeholder="Composer name" />
+          </div>
+        </div>
+      </div>
+      <div class="search-tools">
+          <button id="search-submit-button" class="btn btn-sm btn-primary" title="Search">
+            <svg class="icon" aria-hidden="true"><use href="#search"></use></svg><span class="btn-label">Search</span>
+          </button>
+          <button id="search-mode-button" class="btn btn-sm btn-outline-secondary" title="Switch to multi-field search" aria-label="Switch to multi-field search" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#search_gear"></use></svg><span class="btn-label">Mode</span>
+          </button>
+          <button id="search-filters-button" class="btn btn-sm btn-outline-secondary" data-ui-toggle="collapse"
+            data-ui-target="#search-filters-panel" aria-expanded="false" aria-controls="search-filters-panel" title="Song filters for search">
+            <svg class="icon" aria-hidden="true"><use href="#tune"></use></svg><span class="btn-label">Filters</span>
+          </button>
+          <button id="search-table-tools-button" class="btn btn-sm btn-outline-secondary" data-ui-toggle="collapse"
+            data-ui-target="#table-tools-panel" aria-expanded="false" aria-controls="table-tools-panel" title="Table operations and client filters">
+            <svg class="icon" aria-hidden="true"><use href="#table_chart"></use></svg><span class="btn-label">Table</span>
+          </button>
+          <div class="dropdown">
+            <button id="search-data-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-ui-toggle="dropdown"
+              aria-expanded="false" title="Data operations">
+              <svg class="icon" aria-hidden="true"><use href="#database"></use></svg><span class="btn-label">Data</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><button id="data-statistics-button" class="dropdown-item" type="button" data-ui-toggle="modal"
+                  data-ui-target="#stats-modal"><svg class="icon" aria-hidden="true"><use href="#bar_chart"></use></svg>Statistics</button></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><button id="data-import-button" class="dropdown-item" type="button"><svg
+                    class="icon" aria-hidden="true"><use href="#upload_file"></use></svg>Import File</button></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><button id="data-export-csv-button" class="dropdown-item" type="button"><svg
+                    class="icon" aria-hidden="true"><use href="#download"></use></svg>Export as CSV</button></li>
+              <li><button id="data-export-json-button" class="dropdown-item" type="button"><svg
+                    class="icon" aria-hidden="true"><use href="#description"></use></svg>Export as JSON</button></li>
+            </ul>
+          </div>
+          <div id="search-filter-type-control" class="search-match-mode d-none">
+            <label for="search-filter-type-select">Filter type</label>
+            <select id="search-filter-type-select" class="form-select form-select-sm" disabled>
+              <option value="union">Any (OR)</option>
+              <option value="intersection" selected>All (AND)</option>
+            </select>
+          </div>
+      </div>
+      <input id="data-import-file-input" type="file" accept="application/json,.json,text/csv,.csv" class="d-none" />
+    </div>
+
+    <div id="alert-host"></div>
+
+    <!-- Advanced filters pane -->
+    <div class="collapse workspace-pane" id="search-filters-panel">
+      <div class="card">
+        <div class="card-body">
+          <div class="search-filter-band-groups">
+            <fieldset class="search-filter-band-group">
+              <legend>Song type</legend>
+              <div class="search-filter-choice-list">
+                <label class="search-filter-choice" for="filter-song-type-op"><input type="checkbox" id="filter-song-type-op" checked>OP</label>
+                <label class="search-filter-choice" for="filter-song-type-ed"><input type="checkbox" id="filter-song-type-ed" checked>ED</label>
+                <label class="search-filter-choice" for="filter-song-type-in"><input type="checkbox" id="filter-song-type-in" checked>IN</label>
+              </div>
+            </fieldset>
+            <fieldset class="search-filter-band-group">
+              <legend>Broadcast</legend>
+              <div class="search-filter-choice-list">
+                <label class="search-filter-choice" for="filter-broadcast-normal"><input type="checkbox" id="filter-broadcast-normal" checked>Normal</label>
+                <label class="search-filter-choice" for="filter-broadcast-dub"><input type="checkbox" id="filter-broadcast-dub" checked>Dubs</label>
+                <label class="search-filter-choice" for="filter-broadcast-rebroadcast"><input type="checkbox" id="filter-broadcast-rebroadcast" checked>Rebroadcasts</label>
+              </div>
+            </fieldset>
+            <fieldset class="search-filter-band-group">
+              <legend>Performance</legend>
+              <div class="search-filter-choice-list">
+                <label class="search-filter-choice" for="filter-performance-standard"><input type="checkbox" id="filter-performance-standard" checked>Standard</label>
+                <label class="search-filter-choice" for="filter-performance-character"><input type="checkbox" id="filter-performance-character" checked>Character</label>
+                <label class="search-filter-choice" for="filter-performance-chanting"><input type="checkbox" id="filter-performance-chanting" checked>Chanting</label>
+                <label class="search-filter-choice" for="filter-performance-instrumental"><input type="checkbox" id="filter-performance-instrumental" checked>Instrumental</label>
+              </div>
+            </fieldset>
+            <fieldset class="search-filter-band-group">
+              <legend>Anime type</legend>
+              <div class="search-filter-choice-list">
+                <label class="search-filter-choice" for="filter-anime-type-tv"><input type="checkbox" id="filter-anime-type-tv" checked>TV</label>
+                <label class="search-filter-choice" for="filter-anime-type-movie"><input type="checkbox" id="filter-anime-type-movie" checked>Movie</label>
+                <label class="search-filter-choice" for="filter-anime-type-ova"><input type="checkbox" id="filter-anime-type-ova" checked>OVA</label>
+                <label class="search-filter-choice" for="filter-anime-type-ona"><input type="checkbox" id="filter-anime-type-ona" checked>ONA</label>
+                <label class="search-filter-choice" for="filter-anime-type-special"><input type="checkbox" id="filter-anime-type-special" checked>Special</label>
+                <label class="search-filter-choice" for="filter-anime-type-other"><input type="checkbox" id="filter-anime-type-other" checked>Other</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="search-filter-matching">
+            <span class="search-filter-matching-label">Matching</span>
+            <div class="search-filter-matching-choices">
+              <div class="search-filter-choice-with-tip">
+                <label class="search-filter-choice" for="filter-partial-match"><input type="checkbox" id="filter-partial-match" checked>Partial match</label>
+                <span class="icon-tip" tabindex="0" data-tip="When enabled, search terms will match partial words. When disabled, only exact word matches will be found."><svg class="icon text-muted" aria-hidden="true"><use href="#info"></use></svg></span>
+              </div>
+              <div class="search-filter-choice-with-tip">
+                <label class="search-filter-choice" for="filter-match-case"><input type="checkbox" id="filter-match-case">Match case</label>
+                <span class="icon-tip" tabindex="0" data-tip="When enabled, search is case-sensitive. When disabled, search ignores letter case."><svg class="icon text-muted" aria-hidden="true"><use href="#info"></use></svg></span>
+              </div>
+              <div class="search-filter-choice-with-tip">
+                <label class="search-filter-choice" for="filter-arrangement"><input type="checkbox" id="filter-arrangement" checked>Arrangement</label>
+                <span class="icon-tip" tabindex="0" data-tip="When searching by composer, also include songs where they are listed as arranger."><svg class="icon text-muted" aria-hidden="true"><use href="#info"></use></svg></span>
+              </div>
+              <label class="search-filter-choice" for="filter-ignore-duplicates"><input type="checkbox" id="filter-ignore-duplicates">Ignore duplicates</label>
+            </div>
+            <div class="search-filter-limits">
+              <div class="search-filter-limit">
+                <label for="filter-max-other-people-input">Max other people</label>
+                <span class="icon-tip" tabindex="0" data-tip="Maximum number of additional artists allowed in a group. Set to 0 for solo artists only, or higher to include groups with multiple members."><svg class="icon text-muted" aria-hidden="true"><use href="#info"></use></svg></span>
+                <input id="filter-max-other-people-input" type="number" class="form-control" min="0" value="99">
+              </div>
+              <div class="search-filter-limit">
+                <label for="filter-min-group-members-input">Min group members</label>
+                <span class="icon-tip" tabindex="0" data-tip="Minimum number of members required for a group. Set to 0 to include solo artists, or higher to only show groups with multiple members."><svg class="icon text-muted" aria-hidden="true"><use href="#info"></use></svg></span>
+                <input id="filter-min-group-members-input" type="number" class="form-control" min="0" value="0">
+              </div>
+            </div>
+          </div>
+
+          <div class="search-filter-range-fields">
+            <div><label class="form-label" for="filter-season-range-input">Season range</label><input id="filter-season-range-input" type="text" class="form-control" placeholder="Season Year - Season Year"></div>
+            <div><label class="form-label" for="filter-difficulty-input">Difficulty</label><input id="filter-difficulty-input" type="text" class="form-control" placeholder="e.g. 60-100, none"></div>
+            <div><label class="form-label" for="filter-genre-input">Genres</label><input id="filter-genre-input" type="text" class="form-control" placeholder="Action, Comedy"></div>
+            <div><label class="form-label" for="filter-tag-input">Tags</label><input id="filter-tag-input" type="text" class="form-control" placeholder="School, Magic"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="collapse workspace-pane" id="table-tools-panel">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <div class="fw-semibold mb-2">Table Operations</div>
+            <div class="d-flex gap-2 flex-wrap">
+              <button id="table-shuffle-button" class="btn btn-sm btn-outline-secondary" title="Shuffle current visible rows">
+                  <svg class="icon" aria-hidden="true"><use href="#shuffle"></use></svg>Shuffle Results
+              </button>
+              <button id="table-reverse-button" class="btn btn-sm btn-outline-secondary" title="Reverse current visible rows">
+                  <svg class="icon" aria-hidden="true"><use href="#swap_vert"></use></svg>Reverse Order
+              </button>
+              <button id="table-clear-button" class="btn btn-sm btn-outline-danger" title="Remove all rows from table">
+                  <svg class="icon" aria-hidden="true"><use href="#delete"></use></svg>Clear Table
+              </button>
+            </div>
+          </div>
+          <div>
+            <div class="fw-semibold mb-2">Tasks</div>
+            <div class="d-flex gap-2 flex-wrap">
+              <button id="table-check-links-button" class="btn btn-sm btn-outline-secondary" title="Validate links for 720/480/MP3">
+                  <svg class="icon" aria-hidden="true"><use href="#link"></use></svg>Check Links
+              </button>
+              <button id="table-rebuild-button" class="btn btn-sm btn-outline-secondary" title="Fetch table songs by ANN Song IDs and rebuild with fresh data">
+                  <svg class="icon" aria-hidden="true"><use href="#refresh"></use></svg>Rebuild Table
+              </button>
+              <button id="table-check-song-ids-button" class="btn btn-sm btn-outline-secondary" title="Check if all songs have a unique ANN Song ID">
+                  <svg class="icon" aria-hidden="true"><use href="#checklist"></use></svg>Check Song IDs
+              </button>
+            </div>
+          </div>
+          <div class="table-filter-section">
+            <div class="fw-semibold mb-2">Client Filter
+              <span class="icon-tip" tabindex="0" data-tip="Operates on current visible rows only. Apply will permanently keep/remove rows for this table until a New or Append search. Partial = substring match; unchecked = exact match. Anime respects current language."><svg class="icon text-muted" aria-hidden="true"><use href="#info"></use></svg></span>
+            </div>
+            <div class="row g-2 align-items-end">
+              <div class="col-6 col-md-2">
+                <label for="table-filter-action-select" class="form-label">Action</label>
+                <select id="table-filter-action-select" class="form-select form-select-sm">
+                  <option value="keep" selected>Keep</option>
+                  <option value="remove">Remove</option>
+                </select>
+              </div>
+              <div class="col-6 col-md-2">
+                <label for="table-filter-field-select" class="form-label">Field</label>
+                <select id="table-filter-field-select" class="form-select form-select-sm">
+                  <option value="Anime" selected>Anime</option>
+                  <option value="Anime Type">Anime Type</option>
+                  <option value="Artist">Artist</option>
+                  <option value="Song">Song</option>
+                  <option value="Composer">Composer</option>
+                  <option value="Arranger">Arranger</option>
+                  <option value="Season">Season</option>
+                  <option value="Song Type">Song Type</option>
+                  <option value="Broadcast Type">Broadcast Type</option>
+                  <option value="Song Category">Performance</option>
+                  <option value="ANN ID">ANN ID</option>
+                  <option value="Difficulty">Difficulty</option>
+                  <option value="Length">Length</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-4">
+                <label for="table-filter-query-input" class="form-label">Text</label>
+                <input id="table-filter-query-input" type="text" class="form-control form-control-sm" placeholder="Enter text" />
+              </div>
+              <div class="col-6 col-md-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="table-filter-partial-match" checked />
+                  <label class="form-check-label" for="table-filter-partial-match">Partial match</label>
+                </div>
+              </div>
+              <div class="col-6 col-md-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="table-filter-match-case" />
+                  <label class="form-check-label" for="table-filter-match-case">Match case</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <button id="table-filter-apply-button" class="btn btn-sm btn-primary">
+                    <svg class="icon" aria-hidden="true"><use href="#filter_alt"></use></svg>Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="results-section" aria-labelledby="results-title">
+      <div class="results-heading">
+        <h2 id="results-title">Results <span id="results-count">0</span></h2>
+        <div class="dropdown results-options-wrap">
+          <button id="results-options-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-ui-toggle="dropdown"
+            aria-expanded="false" aria-controls="results-options-panel" title="Table options">
+            <svg class="icon" aria-hidden="true"><use href="#table_chart"></use></svg>Options
+          </button>
+          <div class="dropdown-menu results-options-menu" id="results-options-panel">
+            <div class="card">
+              <div class="card-body">
+                <div class="results-options-title"><strong>Table options</strong></div>
+                <div class="fw-semibold mb-2">Visible columns</div>
+                <div id="results-column-options" class="results-column-options"></div>
+                <button id="results-manage-columns-button" type="button" class="btn btn-sm btn-outline-secondary mb-3">Manage column order in Settings</button>
+                <div class="row g-3">
+                  <div class="col-12 col-md-3">
+                    <div class="fw-semibold mb-2">Result Mode</div>
+                    <div id="results-mode-control" class="btn-group btn-group-sm" role="group" aria-label="Result mode">
+                      <button type="button" class="btn btn-outline-secondary active" data-mode="new" aria-pressed="true"
+                        title="Create new table every search">New Table</button>
+                      <button type="button" class="btn btn-outline-secondary" data-mode="append" aria-pressed="false"
+                        title="Add results to current table">Append</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="results-cards" class="d-block d-md-none"></div>
+      <div class="table-responsive d-none d-md-block results-table-shell">
+        <table id="results-table" class="table table-sm align-middle w-100">
+          <thead style="display: none;">
+            <tr></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="search-loading-indicator" class="d-flex justify-content-center align-items-center gap-2 py-3 text-muted d-none"
+        aria-live="polite">
+        <div class="spinner-border" role="status" aria-hidden="true"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player appears after the first track is selected. -->
+  <div class="player-wrap" id="player-container" aria-label="Audio player">
+    <audio id="player-audio" preload="metadata"></audio>
+    <div class="player-inner">
+      <div class="player-current"><span class="player-art" id="player-artwork" aria-hidden="true">ADB</span><div class="player-current-text"><strong id="player-title">No song selected</strong><span id="player-context">Choose a song from the results</span></div></div>
+      <div class="player-center">
+        <div class="player-controls">
+          <button id="player-repeat-button" type="button" aria-label="Playback mode: Stop at end" title="Stop at end"><svg class="icon" aria-hidden="true"><use href="#stop"></use></svg></button>
+          <button id="player-previous-button" type="button" aria-label="Previous song" title="Previous song"><svg class="icon" aria-hidden="true"><use href="#skip_previous"></use></svg></button>
+          <button id="player-play-pause-button" class="player-toggle" type="button" aria-label="Play" title="Play"><svg class="icon" aria-hidden="true"><use href="#play_arrow"></use></svg></button>
+          <button id="player-next-button" type="button" aria-label="Next song" title="Next song"><svg class="icon" aria-hidden="true"><use href="#skip_next"></use></svg></button>
+          <button type="button" aria-label="Playlists" title="Playlists" data-ui-toggle="modal" data-ui-target="#playlists-modal"><svg class="icon" aria-hidden="true"><use href="#queue_music"></use></svg></button>
+        </div>
+        <div class="player-timeline"><span id="player-elapsed">0:00</span><input id="player-seek-input" type="range" min="0" max="100" value="0" aria-label="Playback position"><span id="player-duration">0:00</span></div>
+      </div>
+      <div class="player-extra"><button id="player-mute-button" type="button" aria-label="Mute" title="Mute"><svg class="icon" aria-hidden="true"><use href="#volume_up"></use></svg></button><input id="player-volume-input" type="range" min="0" max="100" value="100" aria-label="Volume"><a id="player-source-link" class="player-source" target="_blank" rel="noopener noreferrer" aria-disabled="true">—</a><button id="player-info-button" type="button" aria-label="Song information" title="Song information"><svg class="icon" aria-hidden="true"><use href="#info"></use></svg></button></div>
+    </div>
+  </div>
+
+  <!-- Song Info Modal -->
+  <div class="modal" id="song-info-modal" tabindex="-1" aria-hidden="true" aria-labelledby="song-info-title">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header song-info-header">
+          <h5 class="modal-title" id="song-info-title">Song Info</h5>
+          <div class="ms-auto">
+            <select id="song-info-view-select" class="form-select form-select-sm" aria-label="Song information view">
+              <option value="formatted" selected>Details</option>
+              <option value="raw">Raw JSON</option>
+            </select>
+          </div>
+          <button type="button" class="btn-close ms-2" data-ui-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="song-info-formatted" class="d-none"></div>
+          <pre id="song-info-json" class="mb-0 d-none"></pre>
+        </div>
+        <div class="modal-footer song-info-footer d-flex justify-content-between align-items-center">
+          <div class="d-flex gap-2">
+            <button id="song-info-previous-button" class="btn btn-outline-secondary" aria-label="Previous song" title="Previous song"><svg
+                  class="icon" aria-hidden="true"><use href="#skip_previous"></use></svg><span class="song-info-button-label">Prev</span></button>
+            <button id="song-info-next-button" class="btn btn-outline-secondary" aria-label="Next song" title="Next song"><span class="song-info-button-label">Next</span><svg
+                  class="icon" aria-hidden="true"><use href="#skip_next"></use></svg></button>
+          </div>
+          <div class="d-flex gap-2">
+            <button id="song-info-add-to-playlist-button" class="btn btn-outline-secondary" aria-label="Add to playlist" title="Add to playlist"><svg class="icon" aria-hidden="true"><use href="#add"></use></svg><span class="song-info-button-label">Add to playlist</span></button>
+            <button id="song-info-play-button" class="btn btn-primary" aria-label="Play song" title="Play song"><svg class="icon" aria-hidden="true"><use href="#play_arrow"></use></svg><span class="song-info-button-label">Play</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Playlist Selection Modal -->
+  <div class="modal" id="playlist-selection-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add to Playlist</h5>
+          <button type="button" class="btn-close" data-ui-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <div class="playlist-selection-song-info mb-3 p-2 border rounded">
+              <!-- Song info will be populated here -->
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="playlist-selection-select" class="form-label">Select Playlist:</label>
+            <select id="playlist-selection-select" class="form-select">
+              <option value="">-- Select a playlist --</option>
+            </select>
+            <label class="form-check form-switch playlist-selection-auto-add">
+              <input id="playlist-selection-auto-add-checkbox" class="form-check-input" type="checkbox" disabled>
+              <span class="form-check-label">Auto add to this playlist</span>
+            </label>
+          </div>
+          <div class="mb-3">
+            <label for="playlist-selection-new-name-input" class="form-label">Or create new playlist:</label>
+            <div class="input-group">
+              <input type="text" id="playlist-selection-new-name-input" class="form-control" placeholder="Enter playlist name">
+              <button id="playlist-selection-create-button" class="btn btn-outline-primary" type="button">Create & Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="playlist-selection-add-button" class="btn btn-primary" disabled>Add to Playlist</button>
+          <button class="btn btn-secondary" data-ui-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal" id="settings-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Settings</h5>
+          <button type="button" class="btn-close" data-ui-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="settings-tabs" role="tablist" aria-label="Settings sections">
+            <li role="presentation"><button class="nav-link active" id="settings-appearance-tab" data-ui-toggle="tab" data-ui-target="#settings-appearance-panel" type="button" role="tab" aria-controls="settings-appearance-panel" aria-selected="true"><svg class="icon" aria-hidden="true"><use href="#visibility"></use></svg>Appearance</button></li>
+            <li role="presentation"><button class="nav-link" id="settings-playback-tab" data-ui-toggle="tab" data-ui-target="#settings-playback-panel" type="button" role="tab" aria-controls="settings-playback-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#play_arrow"></use></svg>Playback</button></li>
+            <li role="presentation"><button class="nav-link" id="settings-table-tab" data-ui-toggle="tab" data-ui-target="#settings-table-panel" type="button" role="tab" aria-controls="settings-table-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#table_chart"></use></svg>Results table</button></li>
+            <li role="presentation"><button class="nav-link" id="settings-shortcuts-tab" data-ui-toggle="tab" data-ui-target="#settings-shortcuts-panel" type="button" role="tab" aria-controls="settings-shortcuts-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#tune"></use></svg>Shortcuts</button></li>
+            <li role="presentation"><button class="nav-link" id="settings-data-tab" data-ui-toggle="tab" data-ui-target="#settings-data-panel" type="button" role="tab" aria-controls="settings-data-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#database"></use></svg>Data</button></li>
+            <li role="presentation"><button class="nav-link" id="settings-about-tab" data-ui-toggle="tab" data-ui-target="#settings-about-panel" type="button" role="tab" aria-controls="settings-about-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#info"></use></svg>About</button></li>
+          </ul>
+
+          <div id="settings-content">
+            <section class="tab-pane show active" id="settings-appearance-panel" role="tabpanel" aria-labelledby="settings-appearance-tab">
+              <div class="settings-section-head"><h6>Appearance</h6><p>Choose how the catalog looks and which anime title is shown first.</p></div>
+              <div class="settings-row"><div><strong>Theme</strong><p>Switch between dark and light surfaces.</p></div><div class="segmented-switch" id="settings-theme-control" role="group" aria-label="Theme"><button type="button" class="segment active" data-value="dark">Dark</button><button type="button" class="segment" data-value="light">Light</button></div></div>
+              <div class="settings-row"><div><strong>Anime title language</strong><p>Used in the result table and song details.</p></div><div class="segmented-switch" id="settings-language-control" role="group" aria-label="Anime title language"><button type="button" class="segment active" data-value="english">English</button><button type="button" class="segment" data-value="romaji">Romaji</button></div></div>
+            </section>
+
+            <section class="tab-pane" id="settings-playback-panel" role="tabpanel" aria-labelledby="settings-playback-tab">
+              <div class="settings-section-head"><h6>Playback</h6><p>Set what happens when a song ends and where media is loaded from.</p></div>
+              <div class="settings-row"><div><strong>When a track ends</strong><p>Stop, repeat this song, or continue through the table.</p></div><div class="segmented-switch" id="settings-radio-mode-control" role="group" aria-label="Playback mode"><button type="button" class="segment active" data-value="none">Stop</button><button type="button" class="segment" data-value="repeat">Repeat song</button><button type="button" class="segment" data-value="loopAll">Loop table</button></div></div>
+              <div class="settings-row"><div><strong>File host</strong><p>Media mirror used for AMQ audio and video.</p></div><div class="segmented-switch" id="settings-file-host-control" role="group" aria-label="File host"><button type="button" class="segment active" data-value="nawdist">NA West</button><button type="button" class="segment" data-value="naedist">NA East</button><button type="button" class="segment" data-value="eudist">EU</button></div></div>
+              <div class="settings-row"><div><strong>Default volume</strong><p>Starting level when you open the site.</p></div><div class="settings-volume"><input type="range" class="form-range" id="settings-default-volume-input" min="0" max="100" step="1" value="100" aria-label="Default player volume"><span id="settings-default-volume-value">100%</span></div></div>
+            </section>
+
+            <section class="tab-pane" id="settings-table-panel" role="tabpanel" aria-labelledby="settings-table-tab">
+              <div class="settings-section-head"><h6>Results table</h6><p>Check columns to show them. Drag any column to set its position in the table.</p></div>
+              <div class="settings-row"><div><strong>On page load</strong><p>Load 50 random songs into the table when the page opens.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-random-songs-checkbox"><span class="form-check-label">Load random songs</span></label></div>
+              <div class="settings-row"><div><strong>Row stripes</strong><p>Add a faint background to alternating rows.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-zebra-stripes-checkbox"><span class="form-check-label">Show stripes</span></label></div>
+              <div class="settings-column-toolbar"><strong>Columns <span id="settings-visible-column-count"></span></strong><div><button id="settings-reset-column-order-button" class="btn btn-sm btn-outline-secondary" type="button">Reset order</button><button id="settings-reset-columns-button" class="btn btn-sm btn-outline-secondary" type="button">Reset selection</button></div></div>
+              <div class="settings-column-manager">
+                <div class="settings-column-panel"><div id="settings-column-list" class="settings-column-list" aria-label="Table columns"></div></div>
+              </div>
+            </section>
+
+            <section class="tab-pane" id="settings-shortcuts-panel" role="tabpanel" aria-labelledby="settings-shortcuts-tab">
+              <div class="settings-section-head"><h6>Keyboard shortcuts</h6><p>Click a field and press the keys you want to use.</p></div>
+              <div class="settings-shortcut-grid">
+                <div><label for="shortcut-search-mode-input" class="form-label">Switch Simple / Multi-field search</label><input id="shortcut-search-mode-input" class="form-control" placeholder="Press keys" readonly></div>
+                <div><label for="shortcut-download-json-input" class="form-label">Download table as JSON</label><input id="shortcut-download-json-input" class="form-control" placeholder="Press keys" readonly></div>
+                <div><label for="shortcut-play-pause-input" class="form-label">Play / pause</label><input id="shortcut-play-pause-input" class="form-control" placeholder="Press keys" readonly></div>
+                <div><label for="shortcut-radio-mode-input" class="form-label">Cycle radio mode</label><input id="shortcut-radio-mode-input" class="form-control" placeholder="Press keys" readonly></div>
+                <div><label for="shortcut-previous-song-input" class="form-label">Previous song</label><input id="shortcut-previous-song-input" class="form-control" placeholder="Press keys" readonly></div>
+                <div><label for="shortcut-next-song-input" class="form-label">Next song</label><input id="shortcut-next-song-input" class="form-control" placeholder="Press keys" readonly></div>
+              </div>
+            </section>
+
+            <section class="tab-pane" id="settings-data-panel" role="tabpanel" aria-labelledby="settings-data-tab">
+              <div class="settings-section-head"><h6>Data</h6><p>Move local preferences and playlists between browsers, or reset them.</p></div>
+                <div class="settings-row"><div><strong>Settings</strong><p>Import settings or playlist JSON; export your preferences.</p></div><div class="settings-actions"><button id="settings-import-button" class="btn btn-sm btn-outline-primary" type="button">Import JSON</button><button id="settings-export-button" class="btn btn-sm btn-outline-secondary" type="button">Export settings</button></div></div>
+              <div class="settings-row"><div><strong>Playlists</strong><p>Save all playlists as a JSON backup.</p></div><button id="playlists-export-button" class="btn btn-sm btn-outline-secondary" type="button">Export playlists</button></div>
+              <div class="settings-danger-zone"><strong>Reset local data</strong><p>These actions affect this browser's saved settings or playlists.</p><div class="settings-actions"><button id="settings-reset-button" class="btn btn-sm btn-outline-warning" type="button">Reset settings</button><button id="playlists-delete-all-button" class="btn btn-sm btn-outline-danger" type="button">Delete all playlists</button></div></div>
+              <input id="settings-import-file-input" type="file" accept="application/json,.json" class="d-none">
+            </section>
+
+            <section class="tab-pane" id="settings-about-panel" role="tabpanel" aria-labelledby="settings-about-tab">
+              <div class="settings-section-head"><h6>About</h6><p>Project details and the sources behind the catalog.</p></div>
+              <div class="settings-about-block"><h6>ADB2</h6><div class="settings-about-facts"><div><span>Version</span><strong>1.5</strong></div><div><span>Author</span><strong>kempanator</strong></div></div><a href="https://github.com/kempanator/" target="_blank" rel="noopener noreferrer">Author on GitHub<svg class="icon" aria-hidden="true"><use href="#open_in_new"></use></svg></a></div>
+              <div class="settings-about-block"><h6>AnisongDB</h6><p>ADB2 uses the AnisongDB API, created by xSardine, to fetch data.</p><div class="settings-about-links"><a href="https://anisongdb.com/" target="_blank" rel="noopener noreferrer">https://anisongdb.com/</a><a href="https://github.com/xSardine/AMQ-Artists-DB" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://anisongdb.com/docs/" target="_blank" rel="noopener noreferrer">API Docs</a><a href="https://stats.anisongdb.com/" target="_blank" rel="noopener noreferrer">Stats</a></div></div>
+              <div class="settings-about-block"><h6>Anime Music Quiz (AMQ)</h6><p>AnisongDB is built upon the database of Anime Music Quiz, created by Egerod.</p><div class="settings-about-links"><a href="https://animemusicquiz.com/" target="_blank" rel="noopener noreferrer">https://animemusicquiz.com/</a><a href="https://www.patreon.com/NextWorldGames" target="_blank" rel="noopener noreferrer">Support on Patreon</a></div></div>
+            </section>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-primary" type="button" data-ui-dismiss="modal">Done</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Playlists Modal -->
+  <div class="modal" id="playlists-modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Playlists</h5>
+          <button type="button" class="btn-close" data-ui-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="playlist-layout">
+            <aside class="playlist-sidebar" aria-label="Saved playlists">
+              <label class="form-label" for="playlists-search-input">Find a playlist</label>
+              <input type="search" class="form-control" id="playlists-search-input" placeholder="Search playlists">
+              <div id="playlists-list" class="playlist-list"></div>
+              <p id="playlists-no-matches" class="empty-state-message" style="display:none">No matching playlists.</p>
+              <div id="playlists-empty-message" class="playlist-empty" style="display:none"><svg class="icon icon-lg" aria-hidden="true"><use href="#folder_open"></use></svg><strong>No saved playlists</strong><span>Save the current results below to start a library.</span></div>
+            </aside>
+            <div id="playlists-detail" class="playlist-detail" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="modal-footer playlist-footer"><label for="playlists-name-input">Save current table results as a playlist</label><div class="playlist-create"><input type="text" class="form-control" id="playlists-name-input" placeholder="Playlist name"><button type="button" class="btn btn-primary" id="playlists-save-button"><svg class="icon" aria-hidden="true"><use href="#add"></use></svg>Save playlist</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Modal -->
+  <div class="modal" id="stats-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <svg class="icon me-2" aria-hidden="true"><use href="#bar_chart"></use></svg>Table Statistics
+          </h5>
+          <div class="ms-auto d-flex align-items-center gap-2">
+            <button type="button" class="btn-close" data-ui-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div id="stats-content">
+            <!-- Overview Cards -->
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-md-3">
+                <div class="card border-0 bg-primary bg-opacity-10">
+                  <div class="card-body text-center">
+                    <svg class="icon text-primary icon-lg mb-2" aria-hidden="true"><use href="#music_note"></use></svg>
+                    <h4 class="mb-1" id="stats-total-songs">-</h4>
+                    <small class="text-muted">Total Songs</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="card border-0 bg-success bg-opacity-10">
+                  <div class="card-body text-center">
+                    <svg class="icon text-success icon-lg mb-2" aria-hidden="true"><use href="#tv"></use></svg>
+                    <h4 class="mb-1" id="stats-total-anime">-</h4>
+                    <small class="text-muted">Total Anime</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="card border-0 bg-info bg-opacity-10">
+                  <div class="card-body text-center">
+                    <svg class="icon text-info icon-lg mb-2" aria-hidden="true"><use href="#mic"></use></svg>
+                    <h4 class="mb-1" id="stats-total-artists">-</h4>
+                    <small class="text-muted">Total Artists</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="card border-0 bg-warning bg-opacity-10">
+                  <div class="card-body text-center">
+                    <svg class="icon text-warning icon-lg mb-2" aria-hidden="true"><use href="#calendar_month"></use></svg>
+                    <h4 class="mb-1" id="stats-total-seasons">-</h4>
+                    <small class="text-muted">Total Seasons</small>
+                  </div>
+                </div>
+              </div>
+              <!-- New averages: difficulty & length -->
+              <div class="col-6 col-md-3">
+                <div class="card border-0 bg-secondary bg-opacity-10">
+                  <div class="card-body text-center">
+                    <svg class="icon text-secondary icon-lg mb-2" aria-hidden="true"><use href="#signal_cellular_alt"></use></svg>
+                    <h4 class="mb-1" id="stats-average-difficulty">-</h4>
+                    <small class="text-muted">Average Difficulty</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="card border-0 bg-secondary bg-opacity-10">
+                  <div class="card-body text-center">
+                    <svg class="icon text-secondary icon-lg mb-2" aria-hidden="true"><use href="#timer"></use></svg>
+                    <h4 class="mb-1" id="stats-average-song-length">-</h4>
+                    <small class="text-muted">Average Song Length</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div id="stats-charts">
+              <div class="row g-4">
+                <!-- Song Types Chart -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#playlist_play"></use></svg>Song Types Distribution
+                      </h6>
+                      <button id="stats-song-types-toggle" class="btn btn-sm btn-outline-secondary"
+                        title="Toggle chart/numbers">
+                        <svg class="icon" aria-hidden="true"><use href="#format_list_numbered"></use></svg>
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="stats-song-types-chart" width="400" height="200"></canvas>
+                      <div id="stats-song-types-values" class="list-group list-group-flush d-none"></div>
+                    </div>
+                  </div>
+                </div>
+        <!-- Performance chart -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h6 class="mb-0">
+            <svg class="icon me-2" aria-hidden="true"><use href="#sell"></use></svg>Performance Distribution
+                      </h6>
+                      <button id="stats-song-categories-toggle" class="btn btn-sm btn-outline-secondary"
+                        title="Toggle chart/numbers">
+                        <svg class="icon" aria-hidden="true"><use href="#format_list_numbered"></use></svg>
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="stats-song-categories-chart" width="400" height="200"></canvas>
+                      <div id="stats-song-categories-values" class="list-group list-group-flush d-none"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Broadcast Types Chart -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#cell_tower"></use></svg>Broadcast Types Distribution
+                      </h6>
+                      <button id="stats-broadcast-types-toggle" class="btn btn-sm btn-outline-secondary"
+                        title="Toggle chart/numbers">
+                        <svg class="icon" aria-hidden="true"><use href="#format_list_numbered"></use></svg>
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="stats-broadcast-types-chart" width="400" height="200"></canvas>
+                      <div id="stats-broadcast-types-values" class="list-group list-group-flush d-none"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Anime Types Chart -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#movie"></use></svg>Anime Types Distribution
+                      </h6>
+                      <button id="stats-anime-types-toggle" class="btn btn-sm btn-outline-secondary"
+                        title="Toggle chart/numbers">
+                        <svg class="icon" aria-hidden="true"><use href="#format_list_numbered"></use></svg>
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="stats-anime-types-chart" width="400" height="200"></canvas>
+                      <div id="stats-anime-types-values" class="list-group list-group-flush d-none"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Difficulty Chart -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#signal_cellular_alt"></use></svg>Difficulty Distribution
+                      </h6>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="stats-difficulty-chart" width="400" height="200"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!-- Vintage Chart -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#calendar_month"></use></svg>Vintage Distribution
+                      </h6>
+                    </div>
+                    <div class="card-body">
+                      <canvas id="stats-vintage-chart" width="400" height="200"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <!-- Top Artists (numbers) -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#mic"></use></svg>Top Artists
+                      </h6>
+                    </div>
+                    <div class="card-body">
+                      <div id="stats-top-artists-values" class="list-group list-group-flush"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Top Anime (numbers) -->
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-header">
+                      <h6 class="mb-0">
+                        <svg class="icon me-2" aria-hidden="true"><use href="#tv"></use></svg>Top Anime
+                      </h6>
+                    </div>
+                    <div class="card-body">
+                      <div id="stats-top-anime-values" class="list-group list-group-flush"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-ui-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- App JS -->
+  <script src="ui.js?v=09540df4"></script>
+  <script src="core/config.js?v=09540df4"></script>
+  <script src="core/eventBus.js?v=09540df4"></script>
+  <script src="core/appState.js?v=09540df4"></script>
+  <script src="core/songRow.js?v=09540df4"></script>
+  <script src="core/mediaUrl.js?v=09540df4"></script>
+  <script src="core/apiClient.js?v=09540df4"></script>
+  <script src="core/searchRequest.js?v=09540df4"></script>
+  <script src="core/tableModel.js?v=09540df4"></script>
+  <script src="core/tableFilter.js?v=09540df4"></script>
+  <script src="components/infoModal.js?v=09540df4"></script>
+  <script src="components/audioPlayer.js?v=09540df4"></script>
+  <script src="components/rowComponent.js?v=09540df4"></script>
+  <script src="components/tableComponent.js?v=09540df4"></script>
+  <script src="components/settingsModal.js?v=09540df4"></script>
+  <script src="components/playlistModal.js?v=09540df4"></script>
+  <script src="components/playlistSelectionModal.js?v=09540df4"></script>
+  <script src="components/toolbar.js?v=09540df4"></script>
+  <script src="components/statsModal.js?v=09540df4"></script>
+  <script src="components/alertComponent.js?v=09540df4"></script>
+  <script src="managers/settingsManager.js?v=09540df4"></script>
+  <script src="managers/hotkeyManager.js?v=09540df4"></script>
+  <script src="managers/ioManager.js?v=09540df4"></script>
+  <script src="managers/tableTasks.js?v=09540df4"></script>
+  <script src="managers/tableManager.js?v=09540df4"></script>
+  <script src="managers/tableRequestManager.js?v=09540df4"></script>
+  <script src="managers/searchManager.js?v=09540df4"></script>
+  <script src="managers/playlistManager.js?v=09540df4"></script>
+  <script src="managers/statsManager.js?v=09540df4"></script>
+  <script src="main.js?v=09540df4"></script>
+
+</body>
+
+</html>
