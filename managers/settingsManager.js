@@ -6,6 +6,7 @@ class SettingsManager {
     this.storageKey = storageKey;
     this.settings = this.load();
     this.applyTheme();
+    this.applyTableWidth();
   }
 
   // Load settings from localStorage and merge with defaults
@@ -76,6 +77,7 @@ class SettingsManager {
       this.applyTheme();
       eventBus.emit("settings:theme-changed", next.theme);
     }
+    if (changed.includes("tableFullWidth")) this.applyTableWidth();
     if (changed.includes("columnOrder")) eventBus.emit("ui:column-order-changed");
     if (changed.includes("visibleColumns")) eventBus.emit("ui:column-visibility-changed");
     if (changed.includes("columnOrder") || changed.includes("language")) {
@@ -185,6 +187,7 @@ class SettingsManager {
       out.loadRandomSongsOnStartup = this.defaults.loadRandomSongsOnStartup;
     }
     if (typeof out.zebraStripe !== "boolean") out.zebraStripe = this.defaults.zebraStripe;
+    if (typeof out.tableFullWidth !== "boolean") out.tableFullWidth = this.defaults.tableFullWidth;
 
     let defVol = Number(out.defaultAudioVolume);
     if (!Number.isFinite(defVol)) defVol = this.defaults.defaultAudioVolume;
@@ -223,6 +226,10 @@ class SettingsManager {
   // Apply theme to document
   applyTheme() {
     document.documentElement.setAttribute("data-theme", this.settings.theme === "dark" ? "dark" : "light");
+  }
+
+  applyTableWidth() {
+    document.documentElement.classList.toggle("table-full-width", this.settings.tableFullWidth);
   }
 
   // Reset column visibility to defaults

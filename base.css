@@ -53,12 +53,11 @@ pre { overflow: auto; }
 @media (min-width: 768px) {
   .col-md-2 { width: 16.666667%; } .col-md-3 { width: 25%; } .col-md-4 { width: 33.333333%; }
   .col-md-5 { width: 41.666667%; } .col-md-6 { width: 50%; } .col-md-8 { width: 66.666667%; }
-  .flex-md-row { flex-direction: row !important; } .align-items-md-center { align-items: center !important; }
-  .d-md-none { display: none !important; } .d-md-block { display: block !important; } .px-md-3 { padding-inline: 1rem !important; }
 }
 @media (max-width: 767.98px) { .d-md-block { display: none !important; } }
 @media (min-width: 992px) { .col-lg-6 { width: 50%; } .col-lg { flex: 1 0 0; } }
-.d-none { display: none !important; } .d-block { display: block !important; } .d-flex { display: flex !important; }
+.d-block { display: block !important; } .d-flex { display: flex !important; }
+.d-none { display: none !important; }
 .flex-column { flex-direction: column !important; } .flex-wrap { flex-wrap: wrap !important; } .flex-nowrap { flex-wrap: nowrap !important; }
 .flex-grow-1 { flex-grow: 1 !important; min-width: 0; }
 .align-items-center { align-items: center !important; } .align-items-start { align-items: flex-start !important; } .align-items-end { align-items: flex-end !important; }
@@ -82,7 +81,7 @@ pre { overflow: auto; }
 .text-center { text-align: center !important; } .text-nowrap { white-space: nowrap !important; }
 .text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .text-muted, .text-secondary { color: var(--muted) !important; }
-.text-primary { color: #6ea8fe !important; } .text-success { color: #75b798 !important; }
+.text-success { color: #75b798 !important; }
 .text-warning { color: var(--warning) !important; } .text-info { color: var(--info) !important; }
 .fw-bold { font-weight: 700 !important; } .fw-semibold { font-weight: 600 !important; }
 .bg-body { background: var(--body-bg) !important; } .bg-body-tertiary { background: var(--tertiary-bg) !important; }
@@ -91,9 +90,7 @@ pre { overflow: auto; }
 .bg-info { background: var(--info) !important; } .bg-opacity-10 { background-color: color-mix(in srgb, currentColor 10%, transparent) !important; }
 
 /* Header and buttons */
-.navbar { display: flex; align-items: center; min-height: 3rem; }
 .sticky-top { position: sticky; top: 0; z-index: 100; }
-.navbar-brand { color: var(--body-color); font-size: 1.25rem; text-decoration: none; margin-right: 1rem; }
 .btn { --btn-bg: transparent; --btn-color: var(--body-color); --btn-border: var(--control-border); display: inline-flex; align-items: center; justify-content: center; gap: 0; padding: .375rem .75rem; color: var(--btn-color); background: var(--btn-bg); border: 1px solid var(--btn-border); border-radius: .375rem; line-height: 1.5; text-align: center; text-decoration: none; vertical-align: middle; white-space: nowrap; user-select: none; }
 .btn:hover:not(:disabled) { filter: brightness(1.16); }
 .btn:active:not(:disabled), .btn.active { filter: brightness(1.28); }
@@ -111,7 +108,6 @@ pre { overflow: auto; }
 .btn-group > .btn:not(:first-child) { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -1px; }
 .btn-group > .btn:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .btn-close { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; padding: 0; background: transparent; border: 0; color: var(--body-color); opacity: .7; }
-.btn-close::before { content: "×"; font-size: 1.7rem; line-height: 1; }
 .btn-close:hover { opacity: 1; }
 :where(button, input, select, a, [tabindex]):focus-visible { outline: 2px solid #86b7fe; outline-offset: 2px; }
 
@@ -217,11 +213,7 @@ pre { overflow: auto; }
 [data-tip]:is(:hover, :focus-visible)::after { content: attr(data-tip); position: absolute; bottom: calc(100% + .4rem); left: 50%; transform: translateX(-50%); width: max-content; max-width: min(300px, 80vw); white-space: normal; padding: .4rem .6rem; color: #fff; background: #333; border: 1px solid #777; border-radius: .25rem; box-shadow: 0 .25rem .75rem #0008; font: .8rem/1.35 system-ui, sans-serif; text-align: left; z-index: 1100; pointer-events: none; }
 
 /* Responsive visibility comes after the base display utilities. */
-.d-none { display: none !important; }
 @media (min-width: 768px) {
   .d-md-block { display: block !important; }
   .d-md-none { display: none !important; }
-  .flex-md-row { flex-direction: row !important; }
-  .align-items-md-center { align-items: center !important; }
-  .px-md-3 { padding-inline: 1rem !important; }
 }

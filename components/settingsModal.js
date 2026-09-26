@@ -11,6 +11,7 @@ class SettingsModal {
     this.resetColsOrder = document.querySelector("#settings-reset-column-order-button");
     this.resetColsVisibility = document.querySelector("#settings-reset-columns-button");
     this.zebraStripe = document.querySelector("#settings-zebra-stripes-checkbox");
+    this.tableFullWidth = document.querySelector("#settings-table-full-width-checkbox");
     this.randomSongsOnLoad = document.querySelector("#settings-random-songs-checkbox");
     this.defaultAudioVolume = document.querySelector("#settings-default-volume-input");
     this.defaultAudioVolumeValue = document.querySelector("#settings-default-volume-value");
@@ -74,6 +75,10 @@ class SettingsModal {
     // Zebra stripe toggle
     this.zebraStripe.addEventListener("change", (e) => {
       settingsManager.set("zebraStripe", e.target.checked);
+    });
+
+    this.tableFullWidth.addEventListener("change", (event) => {
+      settingsManager.set("tableFullWidth", event.target.checked);
     });
 
     this.randomSongsOnLoad.addEventListener("change", (event) => {
@@ -141,6 +146,7 @@ class SettingsModal {
 
     // Initialize zebra stripe toggle
     this.zebraStripe.checked = settingsManager.get("zebraStripe");
+    this.tableFullWidth.checked = settingsManager.get("tableFullWidth");
     this.randomSongsOnLoad.checked = settingsManager.get("loadRandomSongsOnStartup");
 
     // Initialize default audio volume

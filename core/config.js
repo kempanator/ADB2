@@ -48,6 +48,7 @@ const DefaultSettings = {
   searchMode: "simple", // simple | advanced
   loadRandomSongsOnStartup: false,
   zebraStripe: true,
+  tableFullWidth: false,
   defaultAudioVolume: 100, // 0–100, applied to the audio element when the page loads
   hotkeys: { switchSearchMode: "", downloadJson: "", playPause: "", cycleRadioMode: "", prev: "", next: "" },
   visibleColumns: Object.fromEntries(DefaultColumnOrder.map(key => [key, Boolean(TableColumns[key].visible)])),

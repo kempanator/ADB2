@@ -171,8 +171,9 @@ class InfoModal {
     const names = Array.isArray(artist.names) ? artist.names.map(name => this.sanitize(name).trim()).filter(Boolean) : [];
     const groups = Array.isArray(artist.groups) ? artist.groups : [];
     const members = Array.isArray(artist.members) ? artist.members : [];
-    const kind = artist.type === "person" ? "person" : ["group", "choir"].includes(artist.type) ? "group" : "artist";
-    const kindLabel = kind === "person" ? "Person" : kind === "group" ? "Group" : "Credit";
+    const isGroup = artist.type !== "person" && (["group", "choir", "orchestra"].includes(artist.type) || (Array.isArray(artist.members) && artist.members.length > 0));
+    const kind = isGroup ? "group" : "person";
+    const kindLabel = isGroup ? "Group" : "Person";
     const badges = items => items.map(item => {
       const values = Array.isArray(item.names) ? item.names : [];
       return `<span class="song-info-related-badge">${this.copyValueHTML(values.join(", "))}${this.searchIcon(values[0], scope)}</span>`;

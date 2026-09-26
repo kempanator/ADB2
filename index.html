@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ADB2</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png?v=09540df4" />
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=f298e17b" />
   <!-- App CSS -->
-  <link href="base.css?v=09540df4" rel="stylesheet" />
-  <link href="app.css?v=09540df4" rel="stylesheet" />
+  <link href="base.css?v=f298e17b" rel="stylesheet" />
+  <link href="app.css?v=f298e17b" rel="stylesheet" />
 </head>
 
 <body>
@@ -260,16 +260,16 @@
             <svg class="icon" aria-hidden="true"><use href="#search_gear"></use></svg><span class="btn-label">Mode</span>
           </button>
           <button id="search-filters-button" class="btn btn-sm btn-outline-secondary" data-ui-toggle="collapse"
-            data-ui-target="#search-filters-panel" aria-expanded="false" aria-controls="search-filters-panel" title="Song filters for search">
+            data-ui-target="#search-filters-panel" aria-expanded="false" aria-controls="search-filters-panel" aria-label="Filters" title="Song filters for search">
             <svg class="icon" aria-hidden="true"><use href="#tune"></use></svg><span class="btn-label">Filters</span>
           </button>
           <button id="search-table-tools-button" class="btn btn-sm btn-outline-secondary" data-ui-toggle="collapse"
-            data-ui-target="#table-tools-panel" aria-expanded="false" aria-controls="table-tools-panel" title="Table operations and client filters">
+            data-ui-target="#table-tools-panel" aria-expanded="false" aria-controls="table-tools-panel" aria-label="Table" title="Table operations and client filters">
             <svg class="icon" aria-hidden="true"><use href="#table_chart"></use></svg><span class="btn-label">Table</span>
           </button>
           <div class="dropdown">
             <button id="search-data-button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-ui-toggle="dropdown"
-              aria-expanded="false" title="Data operations">
+              aria-expanded="false" aria-label="Data" title="Data operations">
               <svg class="icon" aria-hidden="true"><use href="#database"></use></svg><span class="btn-label">Data</span>
             </button>
             <ul class="dropdown-menu">
@@ -377,7 +377,7 @@
           </div>
 
           <div class="search-filter-range-fields">
-            <div><label class="form-label" for="filter-season-range-input">Season range</label><input id="filter-season-range-input" type="text" class="form-control" placeholder="Season Year - Season Year"></div>
+            <div><label class="form-label" for="filter-season-range-input">Season</label><input id="filter-season-range-input" type="text" class="form-control" placeholder="Season Year - Season Year"></div>
             <div><label class="form-label" for="filter-difficulty-input">Difficulty</label><input id="filter-difficulty-input" type="text" class="form-control" placeholder="e.g. 60-100, none"></div>
             <div><label class="form-label" for="filter-genre-input">Genres</label><input id="filter-genre-input" type="text" class="form-control" placeholder="Action, Comedy"></div>
             <div><label class="form-label" for="filter-tag-input">Tags</label><input id="filter-tag-input" type="text" class="form-control" placeholder="School, Magic"></div>
@@ -625,7 +625,7 @@
           <ul class="nav nav-tabs" id="settings-tabs" role="tablist" aria-label="Settings sections">
             <li role="presentation"><button class="nav-link active" id="settings-appearance-tab" data-ui-toggle="tab" data-ui-target="#settings-appearance-panel" type="button" role="tab" aria-controls="settings-appearance-panel" aria-selected="true"><svg class="icon" aria-hidden="true"><use href="#visibility"></use></svg>Appearance</button></li>
             <li role="presentation"><button class="nav-link" id="settings-playback-tab" data-ui-toggle="tab" data-ui-target="#settings-playback-panel" type="button" role="tab" aria-controls="settings-playback-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#play_arrow"></use></svg>Playback</button></li>
-            <li role="presentation"><button class="nav-link" id="settings-table-tab" data-ui-toggle="tab" data-ui-target="#settings-table-panel" type="button" role="tab" aria-controls="settings-table-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#table_chart"></use></svg>Results table</button></li>
+            <li role="presentation"><button class="nav-link" id="settings-table-tab" data-ui-toggle="tab" data-ui-target="#settings-table-panel" type="button" role="tab" aria-controls="settings-table-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#table_chart"></use></svg>Table</button></li>
             <li role="presentation"><button class="nav-link" id="settings-shortcuts-tab" data-ui-toggle="tab" data-ui-target="#settings-shortcuts-panel" type="button" role="tab" aria-controls="settings-shortcuts-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#tune"></use></svg>Shortcuts</button></li>
             <li role="presentation"><button class="nav-link" id="settings-data-tab" data-ui-toggle="tab" data-ui-target="#settings-data-panel" type="button" role="tab" aria-controls="settings-data-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#database"></use></svg>Data</button></li>
             <li role="presentation"><button class="nav-link" id="settings-about-tab" data-ui-toggle="tab" data-ui-target="#settings-about-panel" type="button" role="tab" aria-controls="settings-about-panel" aria-selected="false"><svg class="icon" aria-hidden="true"><use href="#info"></use></svg>About</button></li>
@@ -649,6 +649,7 @@
               <div class="settings-section-head"><h6>Results table</h6><p>Check columns to show them. Drag any column to set its position in the table.</p></div>
               <div class="settings-row"><div><strong>On page load</strong><p>Load 50 random songs into the table when the page opens.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-random-songs-checkbox"><span class="form-check-label">Load random songs</span></label></div>
               <div class="settings-row"><div><strong>Row stripes</strong><p>Add a faint background to alternating rows.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-zebra-stripes-checkbox"><span class="form-check-label">Show stripes</span></label></div>
+              <div class="settings-row"><div><strong>Table width</strong><p>Use the available screen width for the results table on desktop.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-table-full-width-checkbox"><span class="form-check-label">Full width</span></label></div>
               <div class="settings-column-toolbar"><strong>Columns <span id="settings-visible-column-count"></span></strong><div><button id="settings-reset-column-order-button" class="btn btn-sm btn-outline-secondary" type="button">Reset order</button><button id="settings-reset-columns-button" class="btn btn-sm btn-outline-secondary" type="button">Reset selection</button></div></div>
               <div class="settings-column-manager">
                 <div class="settings-column-panel"><div id="settings-column-list" class="settings-column-list" aria-label="Table columns"></div></div>
@@ -670,16 +671,16 @@
             <section class="tab-pane" id="settings-data-panel" role="tabpanel" aria-labelledby="settings-data-tab">
               <div class="settings-section-head"><h6>Data</h6><p>Move local preferences and playlists between browsers, or reset them.</p></div>
                 <div class="settings-row"><div><strong>Settings</strong><p>Import settings or playlist JSON; export your preferences.</p></div><div class="settings-actions"><button id="settings-import-button" class="btn btn-sm btn-outline-primary" type="button">Import JSON</button><button id="settings-export-button" class="btn btn-sm btn-outline-secondary" type="button">Export settings</button></div></div>
-              <div class="settings-row"><div><strong>Playlists</strong><p>Save all playlists as a JSON backup.</p></div><button id="playlists-export-button" class="btn btn-sm btn-outline-secondary" type="button">Export playlists</button></div>
+              <div class="settings-row"><div><strong>Playlists</strong><p>Save all playlists as a JSON backup.</p></div><div class="settings-actions"><button id="playlists-export-button" class="btn btn-sm btn-outline-secondary" type="button">Export playlists</button></div></div>
               <div class="settings-danger-zone"><strong>Reset local data</strong><p>These actions affect this browser's saved settings or playlists.</p><div class="settings-actions"><button id="settings-reset-button" class="btn btn-sm btn-outline-warning" type="button">Reset settings</button><button id="playlists-delete-all-button" class="btn btn-sm btn-outline-danger" type="button">Delete all playlists</button></div></div>
               <input id="settings-import-file-input" type="file" accept="application/json,.json" class="d-none">
             </section>
 
             <section class="tab-pane" id="settings-about-panel" role="tabpanel" aria-labelledby="settings-about-tab">
               <div class="settings-section-head"><h6>About</h6><p>Project details and the sources behind the catalog.</p></div>
-              <div class="settings-about-block"><h6>ADB2</h6><div class="settings-about-facts"><div><span>Version</span><strong>1.5</strong></div><div><span>Author</span><strong>kempanator</strong></div></div><a href="https://github.com/kempanator/" target="_blank" rel="noopener noreferrer">Author on GitHub<svg class="icon" aria-hidden="true"><use href="#open_in_new"></use></svg></a></div>
-              <div class="settings-about-block"><h6>AnisongDB</h6><p>ADB2 uses the AnisongDB API, created by xSardine, to fetch data.</p><div class="settings-about-links"><a href="https://anisongdb.com/" target="_blank" rel="noopener noreferrer">https://anisongdb.com/</a><a href="https://github.com/xSardine/AMQ-Artists-DB" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://anisongdb.com/docs/" target="_blank" rel="noopener noreferrer">API Docs</a><a href="https://stats.anisongdb.com/" target="_blank" rel="noopener noreferrer">Stats</a></div></div>
-              <div class="settings-about-block"><h6>Anime Music Quiz (AMQ)</h6><p>AnisongDB is built upon the database of Anime Music Quiz, created by Egerod.</p><div class="settings-about-links"><a href="https://animemusicquiz.com/" target="_blank" rel="noopener noreferrer">https://animemusicquiz.com/</a><a href="https://www.patreon.com/NextWorldGames" target="_blank" rel="noopener noreferrer">Support on Patreon</a></div></div>
+              <div class="settings-about-block"><h6>ADB2</h6><div class="settings-about-facts"><div><span>Version</span><strong>1.5</strong></div><div><span>Author</span><strong>kempanator</strong></div></div><a href="https://github.com/kempanator/ADB2/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+              <div class="settings-about-block"><h6>AnisongDB</h6><p>ADB2 uses the AnisongDB API, created by xSardine, to fetch data.</p><div class="settings-about-links"><a href="https://anisongdb.com/" target="_blank" rel="noopener noreferrer">anisongdb.com</a><a href="https://github.com/xSardine/AMQ-Artists-DB" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://anisongdb.com/docs/" target="_blank" rel="noopener noreferrer">API Docs</a><a href="https://stats.anisongdb.com/" target="_blank" rel="noopener noreferrer">Stats</a></div></div>
+              <div class="settings-about-block"><h6>Anime Music Quiz (AMQ)</h6><p>AnisongDB is built upon the database of Anime Music Quiz, created by Egerod.</p><div class="settings-about-links"><a href="https://animemusicquiz.com/" target="_blank" rel="noopener noreferrer">animemusicquiz.com</a><a href="https://www.patreon.com/NextWorldGames" target="_blank" rel="noopener noreferrer">Support on Patreon</a></div></div>
             </section>
           </div>
         </div>
@@ -928,36 +929,36 @@
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- App JS -->
-  <script src="ui.js?v=09540df4"></script>
-  <script src="core/config.js?v=09540df4"></script>
-  <script src="core/eventBus.js?v=09540df4"></script>
-  <script src="core/appState.js?v=09540df4"></script>
-  <script src="core/songRow.js?v=09540df4"></script>
-  <script src="core/mediaUrl.js?v=09540df4"></script>
-  <script src="core/apiClient.js?v=09540df4"></script>
-  <script src="core/searchRequest.js?v=09540df4"></script>
-  <script src="core/tableModel.js?v=09540df4"></script>
-  <script src="core/tableFilter.js?v=09540df4"></script>
-  <script src="components/infoModal.js?v=09540df4"></script>
-  <script src="components/audioPlayer.js?v=09540df4"></script>
-  <script src="components/rowComponent.js?v=09540df4"></script>
-  <script src="components/tableComponent.js?v=09540df4"></script>
-  <script src="components/settingsModal.js?v=09540df4"></script>
-  <script src="components/playlistModal.js?v=09540df4"></script>
-  <script src="components/playlistSelectionModal.js?v=09540df4"></script>
-  <script src="components/toolbar.js?v=09540df4"></script>
-  <script src="components/statsModal.js?v=09540df4"></script>
-  <script src="components/alertComponent.js?v=09540df4"></script>
-  <script src="managers/settingsManager.js?v=09540df4"></script>
-  <script src="managers/hotkeyManager.js?v=09540df4"></script>
-  <script src="managers/ioManager.js?v=09540df4"></script>
-  <script src="managers/tableTasks.js?v=09540df4"></script>
-  <script src="managers/tableManager.js?v=09540df4"></script>
-  <script src="managers/tableRequestManager.js?v=09540df4"></script>
-  <script src="managers/searchManager.js?v=09540df4"></script>
-  <script src="managers/playlistManager.js?v=09540df4"></script>
-  <script src="managers/statsManager.js?v=09540df4"></script>
-  <script src="main.js?v=09540df4"></script>
+  <script src="ui.js?v=f298e17b"></script>
+  <script src="core/config.js?v=f298e17b"></script>
+  <script src="core/eventBus.js?v=f298e17b"></script>
+  <script src="core/appState.js?v=f298e17b"></script>
+  <script src="core/songRow.js?v=f298e17b"></script>
+  <script src="core/mediaUrl.js?v=f298e17b"></script>
+  <script src="core/apiClient.js?v=f298e17b"></script>
+  <script src="core/searchRequest.js?v=f298e17b"></script>
+  <script src="core/tableModel.js?v=f298e17b"></script>
+  <script src="core/tableFilter.js?v=f298e17b"></script>
+  <script src="components/infoModal.js?v=f298e17b"></script>
+  <script src="components/audioPlayer.js?v=f298e17b"></script>
+  <script src="components/rowComponent.js?v=f298e17b"></script>
+  <script src="components/tableComponent.js?v=f298e17b"></script>
+  <script src="components/settingsModal.js?v=f298e17b"></script>
+  <script src="components/playlistModal.js?v=f298e17b"></script>
+  <script src="components/playlistSelectionModal.js?v=f298e17b"></script>
+  <script src="components/toolbar.js?v=f298e17b"></script>
+  <script src="components/statsModal.js?v=f298e17b"></script>
+  <script src="components/alertComponent.js?v=f298e17b"></script>
+  <script src="managers/settingsManager.js?v=f298e17b"></script>
+  <script src="managers/hotkeyManager.js?v=f298e17b"></script>
+  <script src="managers/ioManager.js?v=f298e17b"></script>
+  <script src="managers/tableTasks.js?v=f298e17b"></script>
+  <script src="managers/tableManager.js?v=f298e17b"></script>
+  <script src="managers/tableRequestManager.js?v=f298e17b"></script>
+  <script src="managers/searchManager.js?v=f298e17b"></script>
+  <script src="managers/playlistManager.js?v=f298e17b"></script>
+  <script src="managers/statsManager.js?v=f298e17b"></script>
+  <script src="main.js?v=f298e17b"></script>
 
 </body>
 
