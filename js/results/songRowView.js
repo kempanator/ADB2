@@ -129,7 +129,10 @@ class SongRowView {
     };
     cells.info.innerHTML = `<button class="btn btn-sm btn-outline-secondary js-song-info" title="Song information" aria-label="Song information"><svg class="icon" aria-hidden="true"><use href="#info"></use></svg></button>`;
     cells.annId.innerHTML = this.tableSearchHTML(this.data.annId, "ANN");
-    cells.artist.innerHTML = this.tableSearchHTML(artist, "Artist");
+    const artistIds = songArtistIds(this.data);
+    cells.artist.innerHTML = artistIds.length
+      ? this.tableSearchHTML(artist, "ARTIST_ID", artistIds.join(","))
+      : this.tableSearchHTML(artist, "Artist");
     cells.composer.innerHTML = this.tableSearchHTML(composer, "Composer");
     cells.arranger.innerHTML = this.tableSearchHTML(arranger, "Composer");
     cells.songType.innerHTML = this.typeBadgesHTML(type);
@@ -173,11 +176,15 @@ class SongRowView {
     return cells;
   }
 
-  tableSearchHTML(value, scope) {
-    const query = this.sanitize(value).trim();
-    if (!query) return "";
+  tableSearchHTML(value, scope, searchQuery = value) {
+    const text = this.sanitize(value).trim();
+    if (!text) return "";
+    const query = this.sanitize(searchQuery).trim();
     const attr = text => escapeHtml(text).replaceAll('"', "&quot;").replaceAll("'", "&#39;");
-    return `<button type="button" class="table-search-icon js-table-search" data-scope="${attr(scope)}" data-query="${attr(query)}" aria-label="Search ${attr(scope)} for ${attr(query)}" title="Search ${attr(scope)}"><svg class="icon" aria-hidden="true"><use href="#search"></use></svg></button><span class="table-copy-text">${escapeHtml(query)}</span>`;
+    const copyText = `<span class="table-copy-text">${escapeHtml(text)}</span>`;
+    if (!query) return copyText;
+    const searchLabel = scope === "ARTIST_ID" ? "artist IDs" : scope;
+    return `<button type="button" class="table-search-icon js-table-search" data-scope="${attr(scope)}" data-query="${attr(query)}" aria-label="Search ${attr(searchLabel)} for ${attr(text)}" title="Search ${attr(searchLabel)}"><svg class="icon" aria-hidden="true"><use href="#search"></use></svg></button>${copyText}`;
   }
 
   cell(value, className, title) {
@@ -189,7 +196,8 @@ class SongRowView {
   }
 
   formatDifficulty(dif) {
-    return optionalSongNumber(dif) ?? "";
+    const value = optionalSongNumber(dif);
+    return value === null ? "" : String(Number(value.toFixed(1)));
   }
 
   typeBadgesHTML(type) {

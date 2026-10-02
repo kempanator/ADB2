@@ -5,6 +5,7 @@ class PlaylistsDialog {
     this.btnSavePlaylist = document.querySelector("#playlists-save-button");
     this.playlistName = document.querySelector("#playlists-name-input");
     this.playlistSearch = document.querySelector("#playlists-search-input");
+    this.playlistSort = document.querySelector("#playlists-sort-select");
     this.playlistList = document.querySelector("#playlists-list");
     this.playlistDetail = document.querySelector("#playlists-detail");
     this.noPlaylistsMessage = document.querySelector("#playlists-empty-message");
@@ -41,6 +42,7 @@ class PlaylistsDialog {
       if (event.key === "Enter") this.btnSavePlaylist.click();
     });
     this.playlistSearch.addEventListener("input", () => this.filterPlaylists(this.playlistSearch.value));
+    this.playlistSort.addEventListener("change", () => this.renderPlaylistList());
     this.modal.addEventListener("shown.ui.modal", () => this.renderPlaylistList());
     this.playlistList.addEventListener("click", event => {
       const item = event.target.closest("[data-playlist-index]");
@@ -56,8 +58,17 @@ class PlaylistsDialog {
 
   renderPlaylistList() {
     const records = this.playlistStore.loadAllPlaylists();
-    this.sortedPlaylists = Object.entries(records)
-      .sort(([, a], [, b]) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+    const nameCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
+    this.sortedPlaylists = Object.entries(records).sort(([, a], [, b]) => {
+      const dateDifference = new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt);
+      const nameDifference = nameCollator.compare(a.name, b.name);
+      switch (this.playlistSort.value) {
+        case "date-asc": return -dateDifference || nameDifference;
+        case "name-asc": return nameDifference || dateDifference;
+        case "name-desc": return -nameDifference || dateDifference;
+        default: return dateDifference || nameDifference;
+      }
+    });
     if (!this.sortedPlaylists.some(([id]) => id === this.selectedPlaylistId)) {
       this.selectedPlaylistId = this.sortedPlaylists[0]?.[0] || null;
     }

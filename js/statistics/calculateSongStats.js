@@ -90,10 +90,7 @@ function calculateSongStats(tableData, language) {
       if (Number.isSafeInteger(id) && id > 0) (animeIds[animeTitle] ||= new Set()).add(id);
     }
     if (artist !== "Unknown") {
-      for (const credited of Array.isArray(row.artists) ? row.artists : []) {
-        const id = optionalSongNumber(credited?.id);
-        if (Number.isSafeInteger(id) && id > 0) (artistIds[artist] ||= new Set()).add(id);
-      }
+      for (const id of songArtistIds(row)) (artistIds[artist] ||= new Set()).add(id);
     }
   });
 

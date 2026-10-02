@@ -9,6 +9,7 @@ class SettingsDialog {
     this.radio = document.querySelector("#settings-radio-mode-control");
     this.fileHost = document.querySelector("#settings-file-host-control");
     this.lang = document.querySelector("#settings-language-control");
+    this.resultsViewMode = document.querySelector("#settings-results-view-mode-control");
     this.resetColsOrder = document.querySelector("#settings-reset-column-order-button");
     this.resetColsVisibility = document.querySelector("#settings-reset-columns-button");
     this.zebraStripe = document.querySelector("#settings-zebra-stripes-checkbox");
@@ -56,6 +57,7 @@ class SettingsDialog {
     this.bindSegment(this.fileHost, "fileHost");
 
     this.bindSegment(this.lang, "language");
+    this.bindSegment(this.resultsViewMode, "resultsViewMode");
 
     this.resetColsOrder.addEventListener("click", () => {
       this.settings.resetColumnOrderToDefault();
@@ -140,6 +142,7 @@ class SettingsDialog {
     setSegmentedSwitchSafe("settings-radio-mode-control", this.settings.get("radioMode"), this.settings.defaults.radioMode);
     setSegmentedSwitchSafe("settings-file-host-control", this.settings.get("fileHost"), this.settings.defaults.fileHost);
     setSegmentedSwitchSafe("settings-language-control", this.settings.get("language"), this.settings.defaults.language);
+    setSegmentedSwitchSafe("settings-results-view-mode-control", this.settings.get("resultsViewMode"), this.settings.defaults.resultsViewMode);
 
     this.zebraStripe.checked = this.settings.get("zebraStripe");
     this.tableFullWidth.checked = this.settings.get("tableFullWidth");

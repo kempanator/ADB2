@@ -11,6 +11,12 @@ function songBoolean(value) {
   return Boolean(value);
 }
 
+function songArtistIds(row) {
+  return [...new Set((Array.isArray(row?.artists) ? row.artists : [])
+    .map(artist => optionalSongNumber(artist?.id))
+    .filter(id => Number.isSafeInteger(id) && id > 0))];
+}
+
 function parseSongType(value) {
   const text = String(value ?? "").trim();
   const match = /^(opening|op|ending|ed|insert|in)(?:\s*song)?\s*(\d+)?$/i.exec(text);

@@ -5,6 +5,7 @@ const DefaultSettings = {
   language: "english", // english | romaji
   searchMode: "simple", // simple | advanced
   loadRandomSongsOnStartup: false,
+  resultsViewMode: "auto", // auto | table | cards
   zebraStripe: true,
   tableFullWidth: false,
   defaultAudioVolume: 100, // 0–100, applied to the audio element when the page loads

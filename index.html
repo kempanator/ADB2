@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ADB2</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png?v=a77cf213" />
-  <link href="styles/base.css?v=a77cf213" rel="stylesheet" />
-  <link href="styles/app.css?v=a77cf213" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=31616636" />
+  <link href="styles/base.css?v=31616636" rel="stylesheet" />
+  <link href="styles/app.css?v=31616636" rel="stylesheet" />
 </head>
 
 <body>
@@ -464,7 +464,7 @@
         </div>
       </div>
     </div>
-    <div class="results-section" aria-labelledby="results-title">
+    <div class="results-section" data-view-mode="auto" aria-labelledby="results-title">
       <div class="results-heading">
         <h2 id="results-title">Results <span id="results-count">0</span></h2>
         <div class="dropdown results-options-wrap">
@@ -495,8 +495,8 @@
           </div>
         </div>
       </div>
-      <div id="results-cards" class="d-block d-md-none"></div>
-      <div class="table-responsive d-none d-md-block results-table-shell">
+      <div id="results-cards"></div>
+      <div class="table-responsive results-table-shell">
         <table id="results-table" class="table table-sm align-middle w-100">
           <thead style="display: none;">
             <tr></tr>
@@ -631,6 +631,7 @@
 
             <section class="tab-pane" id="settings-table-panel" role="tabpanel" aria-labelledby="settings-table-tab">
             <div class="settings-section-head"><h6>Results table</h6></div>
+              <div class="settings-row"><div><strong>Results view</strong><p>Auto uses cards below 960px and a table on wider screens.</p></div><div class="segmented-switch" id="settings-results-view-mode-control" role="group" aria-label="Results view"><button type="button" class="segment active" data-value="auto">Auto</button><button type="button" class="segment" data-value="table">Table</button><button type="button" class="segment" data-value="cards">Cards</button></div></div>
               <div class="settings-row"><div><strong>On page load</strong><p>Load 50 random songs into the table when the page opens.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-random-songs-checkbox"><span class="form-check-label">Load random songs</span></label></div>
               <div class="settings-row"><div><strong>Row stripes</strong><p>Add a faint background to alternating rows.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-zebra-stripes-checkbox"><span class="form-check-label">Show stripes</span></label></div>
               <div class="settings-row"><div><strong>Table width</strong><p>Use the available screen width for the results table on desktop.</p></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" id="settings-table-full-width-checkbox"><span class="form-check-label">Full width</span></label></div>
@@ -685,6 +686,15 @@
             <aside class="playlist-sidebar" aria-label="Saved playlists">
               <label class="form-label" for="playlists-search-input">Find a playlist</label>
               <input type="search" class="form-control" id="playlists-search-input" placeholder="Search playlists">
+              <div class="playlist-sort">
+                <label class="form-label" for="playlists-sort-select">Sort by</label>
+                <select class="form-select form-select-sm" id="playlists-sort-select">
+                  <option value="date-desc">Updated: newest first</option>
+                  <option value="date-asc">Updated: oldest first</option>
+                  <option value="name-asc">Name: A–Z</option>
+                  <option value="name-desc">Name: Z–A</option>
+                </select>
+              </div>
               <div id="playlists-list" class="playlist-list"></div>
               <p id="playlists-no-matches" class="empty-state-message" style="display:none">No matching playlists.</p>
               <div id="playlists-empty-message" class="playlist-empty" style="display:none"><svg class="icon icon-lg" aria-hidden="true"><use href="#folder_open"></use></svg><strong>No saved playlists</strong><span>Save the current results below to start a library.</span></div>
@@ -779,47 +789,47 @@
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- App JS: definitions first, composition root last (classic scripts for file://). -->
-  <script src="js/ui/controls.js?v=a77cf213"></script>
-  <script src="js/ui/clipboard.js?v=a77cf213"></script>
-  <script src="js/ui/html.js?v=a77cf213"></script>
-  <script src="js/ui/songBadges.js?v=a77cf213"></script>
-  <script src="js/config.js?v=a77cf213"></script>
-  <script src="js/shared/eventBus.js?v=a77cf213"></script>
-  <script src="js/songs/song.js?v=a77cf213"></script>
-  <script src="js/songs/mediaUrl.js?v=a77cf213"></script>
-  <script src="js/results/resultColumns.js?v=a77cf213"></script>
-  <script src="js/settings/defaultSettings.js?v=a77cf213"></script>
-  <script src="js/api/anisongDbClient.js?v=a77cf213"></script>
-  <script src="js/api/probeMediaUrl.js?v=a77cf213"></script>
-  <script src="js/search/searchRequest.js?v=a77cf213"></script>
-  <script src="js/results/resultsModel.js?v=a77cf213"></script>
-  <script src="js/results/songMatcher.js?v=a77cf213"></script>
-  <script src="js/settings/settingsStore.js?v=a77cf213"></script>
-  <script src="js/playlists/playlistStore.js?v=a77cf213"></script>
-  <script src="js/files/songFileFormats.js?v=a77cf213"></script>
-  <script src="js/files/downloadFile.js?v=a77cf213"></script>
-  <script src="js/statistics/calculateSongStats.js?v=a77cf213"></script>
-  <script src="js/results/resultsController.js?v=a77cf213"></script>
-  <script src="js/results/resultsLoader.js?v=a77cf213"></script>
-  <script src="js/search/searchController.js?v=a77cf213"></script>
-  <script src="js/playlists/playlistController.js?v=a77cf213"></script>
-  <script src="js/files/fileController.js?v=a77cf213"></script>
-  <script src="js/results/refreshResults.js?v=a77cf213"></script>
-  <script src="js/results/checkMediaLinks.js?v=a77cf213"></script>
-  <script src="js/playback/playbackController.js?v=a77cf213"></script>
-  <script src="js/shortcuts/keyboardShortcuts.js?v=a77cf213"></script>
-  <script src="js/songDetails/songDetailsDialog.js?v=a77cf213"></script>
-  <script src="js/playlists/playlistSelectionDialog.js?v=a77cf213"></script>
-  <script src="js/playlists/playlistsDialog.js?v=a77cf213"></script>
-  <script src="js/settings/settingsDialog.js?v=a77cf213"></script>
-  <script src="js/statistics/statisticsDialog.js?v=a77cf213"></script>
-  <script src="js/ui/alertView.js?v=a77cf213"></script>
-  <script src="js/search/searchView.js?v=a77cf213"></script>
-  <script src="js/results/resultsToolbar.js?v=a77cf213"></script>
-  <script src="js/playback/playerView.js?v=a77cf213"></script>
-  <script src="js/results/songRowView.js?v=a77cf213"></script>
-  <script src="js/results/resultsView.js?v=a77cf213"></script>
-  <script src="js/app.js?v=a77cf213"></script>
+  <script src="js/ui/controls.js?v=31616636"></script>
+  <script src="js/ui/clipboard.js?v=31616636"></script>
+  <script src="js/ui/html.js?v=31616636"></script>
+  <script src="js/ui/songBadges.js?v=31616636"></script>
+  <script src="js/config.js?v=31616636"></script>
+  <script src="js/shared/eventBus.js?v=31616636"></script>
+  <script src="js/songs/song.js?v=31616636"></script>
+  <script src="js/songs/mediaUrl.js?v=31616636"></script>
+  <script src="js/results/resultColumns.js?v=31616636"></script>
+  <script src="js/settings/defaultSettings.js?v=31616636"></script>
+  <script src="js/api/anisongDbClient.js?v=31616636"></script>
+  <script src="js/api/probeMediaUrl.js?v=31616636"></script>
+  <script src="js/search/searchRequest.js?v=31616636"></script>
+  <script src="js/results/resultsModel.js?v=31616636"></script>
+  <script src="js/results/songMatcher.js?v=31616636"></script>
+  <script src="js/settings/settingsStore.js?v=31616636"></script>
+  <script src="js/playlists/playlistStore.js?v=31616636"></script>
+  <script src="js/files/songFileFormats.js?v=31616636"></script>
+  <script src="js/files/downloadFile.js?v=31616636"></script>
+  <script src="js/statistics/calculateSongStats.js?v=31616636"></script>
+  <script src="js/results/resultsController.js?v=31616636"></script>
+  <script src="js/results/resultsLoader.js?v=31616636"></script>
+  <script src="js/search/searchController.js?v=31616636"></script>
+  <script src="js/playlists/playlistController.js?v=31616636"></script>
+  <script src="js/files/fileController.js?v=31616636"></script>
+  <script src="js/results/refreshResults.js?v=31616636"></script>
+  <script src="js/results/checkMediaLinks.js?v=31616636"></script>
+  <script src="js/playback/playbackController.js?v=31616636"></script>
+  <script src="js/shortcuts/keyboardShortcuts.js?v=31616636"></script>
+  <script src="js/songDetails/songDetailsDialog.js?v=31616636"></script>
+  <script src="js/playlists/playlistSelectionDialog.js?v=31616636"></script>
+  <script src="js/playlists/playlistsDialog.js?v=31616636"></script>
+  <script src="js/settings/settingsDialog.js?v=31616636"></script>
+  <script src="js/statistics/statisticsDialog.js?v=31616636"></script>
+  <script src="js/ui/alertView.js?v=31616636"></script>
+  <script src="js/search/searchView.js?v=31616636"></script>
+  <script src="js/results/resultsToolbar.js?v=31616636"></script>
+  <script src="js/playback/playerView.js?v=31616636"></script>
+  <script src="js/results/songRowView.js?v=31616636"></script>
+  <script src="js/results/resultsView.js?v=31616636"></script>
+  <script src="js/app.js?v=31616636"></script>
 
 </body>
 

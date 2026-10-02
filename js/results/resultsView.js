@@ -6,6 +6,8 @@ class ResultsView {
     this.events.on("settings:columnOrder-changed", () => this.render());
     this.events.on("settings:visibleColumns-changed", () => this.applyColumnVisibility());
     this.events.on("settings:zebraStripe-changed", () => this.applyZebraStripe());
+    this.events.on("settings:resultsViewMode-changed", () => this.applyViewMode());
+    this.section = document.querySelector(".results-section");
     this.table = document.querySelector("#results-table");
     this.thead = document.querySelector("#results-table thead");
     this.theadRow = document.querySelector("#results-table thead tr");
@@ -57,6 +59,12 @@ class ResultsView {
     this.events.on("settings:fileHost-changed", () => {
       this.rows.forEach(row => row.updateLinkHrefs());
     });
+    this.applyViewMode();
+  }
+
+  applyViewMode() {
+    this.section.dataset.viewMode = this.settings.get("resultsViewMode");
+    this.sizeColumns();
   }
 
   syncRows() {
@@ -88,9 +96,9 @@ class ResultsView {
     }
     const orderedRows = this.getSortedRows();
     orderedRows.forEach((row, index) => row.setIndex(index));
+    this.updateResultsCount();
     this.renderTable(orderedRows);
     this.renderCards(orderedRows);
-    this.updateResultsCount();
     this.markPlaying();
     this.updatePlaylistIndicators();
   }
@@ -176,8 +184,7 @@ class ResultsView {
   // Reserve room for controls and compact values, then give remaining width to text.
   // Shrink flexible compact columns before the fixed controls when many are enabled.
   sizeColumns() {
-    if (window.innerWidth < 768) return;
-    const available = this.table.parentElement.clientWidth;
+    const available = Math.max(this.table.parentElement.clientWidth, this.table.clientWidth);
     if (!available) return;
 
     // [preferred, minimum] pixel widths at the table's 13px text size.
@@ -263,7 +270,7 @@ class ResultsView {
 
   updateResultsCount() {
     this.resultsCount.textContent = String(this.rows.size);
-    document.querySelector(".results-section")?.classList.toggle("has-results", this.rows.size > 0);
+    this.section.classList.toggle("has-results", this.rows.size > 0);
   }
 
   getDomOrderKeys() {

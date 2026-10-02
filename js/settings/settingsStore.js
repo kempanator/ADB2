@@ -95,12 +95,14 @@ class SettingsStore {
     const validHost = new Set(["eudist", "nawdist", "naedist"]);
     const validLang = new Set(["english", "romaji"]);
     const validSearchMode = new Set(["simple", "advanced"]);
+    const validResultsViewMode = new Set(["auto", "table", "cards"]);
 
     if (!validTheme.has(out.theme)) out.theme = this.defaults.theme;
     if (!validRadio.has(out.radioMode)) out.radioMode = this.defaults.radioMode;
     if (!validHost.has(out.fileHost)) out.fileHost = this.defaults.fileHost;
     if (!validLang.has(out.language)) out.language = this.defaults.language;
     if (!validSearchMode.has(out.searchMode)) out.searchMode = this.defaults.searchMode;
+    if (!validResultsViewMode.has(out.resultsViewMode)) out.resultsViewMode = this.defaults.resultsViewMode;
     if (typeof out.loadRandomSongsOnStartup !== "boolean") {
       out.loadRandomSongsOnStartup = this.defaults.loadRandomSongsOnStartup;
     }
